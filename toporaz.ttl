@@ -1,0 +1,1006 @@
+@prefix : <http://www.oneo.net/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.oneo.net/> .
+
+<http://www.oneo.net/> rdf:type owl:Ontology ;
+                       
+                       owl:imports <http://www.w3.org/ns/prov-o-20130430> .
+
+
+#################################################################
+#
+#    Object Properties
+#
+#################################################################
+
+
+###  http://www.oneo.net/hadAddress
+
+:hadAddress rdf:type owl:ObjectProperty ;
+            
+            rdfs:domain :Site ;
+            
+            rdfs:range <http://www.w3.org/ns/prov#Location> .
+
+
+
+###  http://www.oneo.net/hasArchitectureType
+
+:hasArchitectureType rdf:type owl:ObjectProperty ;
+                     
+                     rdfs:range :ArchitectureType ;
+                     
+                     rdfs:domain :Building .
+
+
+
+###  http://www.oneo.net/hasFunction
+
+:hasFunction rdf:type owl:ObjectProperty ;
+             
+             rdfs:domain :Building ;
+             
+             rdfs:range :BuildingFunction ;
+             
+             rdfs:domain :OutsideFurnishing .
+
+
+
+###  http://www.oneo.net/hasFurnishing
+
+:hasFurnishing rdf:type owl:ObjectProperty ;
+               
+               rdfs:range :Furnishing ;
+               
+               rdfs:domain :PublicSite ,
+                           :Room .
+
+
+
+###  http://www.oneo.net/hasOutsideFurnishing
+
+:hasOutsideFurnishing rdf:type owl:ObjectProperty ;
+                      
+                      rdfs:domain :Building ;
+                      
+                      rdfs:range :OutsideFurnishing .
+
+
+
+###  http://www.oneo.net/hasOutsideFurnishingType
+
+:hasOutsideFurnishingType rdf:type owl:ObjectProperty ;
+                          
+                          rdfs:domain :Building ;
+                          
+                          rdfs:range :OutsideFurnishingType ;
+                          
+                          rdfs:subPropertyOf :hasFurnishing .
+
+
+
+###  http://www.oneo.net/hasPublicSiteFunction
+
+:hasPublicSiteFunction rdf:type owl:ObjectProperty ;
+                       
+                       rdfs:domain :PublicSite ;
+                       
+                       rdfs:range :PublicSiteFunction ;
+                       
+                       rdfs:subPropertyOf :hasFunction .
+
+
+
+###  http://www.oneo.net/hasReconstruction
+
+:hasReconstruction rdf:type owl:ObjectProperty ;
+                   
+                   rdfs:range :Reconstruction ;
+                   
+                   rdfs:domain :Site .
+
+
+
+###  http://www.oneo.net/hasRoom
+
+:hasRoom rdf:type owl:ObjectProperty ;
+         
+         rdfs:domain :Building ;
+         
+         rdfs:range :Room .
+
+
+
+###  http://www.oneo.net/hasSacralArchitectureType
+
+:hasSacralArchitectureType rdf:type owl:ObjectProperty ;
+                           
+                           rdfs:range :SacralArchitecture ;
+                           
+                           rdfs:domain :SacralBuilding ;
+                           
+                           rdfs:subPropertyOf :hasArchitectureType .
+
+
+
+###  http://www.oneo.net/hasSacralFunction
+
+:hasSacralFunction rdf:type owl:ObjectProperty ;
+                   
+                   rdfs:domain :SacralBuilding ;
+                   
+                   rdfs:range :SacralFunction ;
+                   
+                   rdfs:subPropertyOf :hasFunction .
+
+
+
+###  http://www.oneo.net/hasSacralRoom
+
+:hasSacralRoom rdf:type owl:ObjectProperty ;
+               
+               rdfs:range :RoomSacralBuilding ;
+               
+               rdfs:domain :SacralBuilding ;
+               
+               rdfs:subPropertyOf :hasRoom .
+
+
+
+###  http://www.oneo.net/istAbgebildetAuf
+
+:istAbgebildetAuf rdf:type owl:ObjectProperty ;
+                  
+                  rdfs:range :Furnishing ;
+                  
+                  rdfs:subPropertyOf :personIs ;
+                  
+                  rdfs:domain <http://www.w3.org/ns/prov#Person> .
+
+
+
+###  http://www.oneo.net/istBegrabenIn
+
+:istBegrabenIn rdf:type owl:ObjectProperty ;
+               
+               rdfs:range :OutsideFurnishing ;
+               
+               rdfs:subPropertyOf :personIs ;
+               
+               rdfs:domain <http://www.w3.org/ns/prov#Person> .
+
+
+
+###  http://www.oneo.net/istBesitzerVon
+
+:istBesitzerVon rdf:type owl:ObjectProperty ;
+                
+                rdfs:range :Building ;
+                
+                rdfs:subPropertyOf :personIs ;
+                
+                rdfs:domain <http://www.w3.org/ns/prov#Person> .
+
+
+
+###  http://www.oneo.net/istBewohnerVon
+
+:istBewohnerVon rdf:type owl:ObjectProperty ;
+                
+                rdfs:range :Building ;
+                
+                rdfs:subPropertyOf :personIs ;
+                
+                rdfs:domain <http://www.w3.org/ns/prov#Person> .
+
+
+
+###  http://www.oneo.net/istEhegatteVon
+
+:istEhegatteVon rdf:type owl:ObjectProperty ;
+                
+                rdfs:subPropertyOf :personIs ;
+                
+                rdfs:range <http://www.w3.org/ns/prov#Person> ;
+                
+                rdfs:domain <http://www.w3.org/ns/prov#Person> .
+
+
+
+###  http://www.oneo.net/istErwähntIn
+
+:istErwähntIn rdf:type owl:ObjectProperty ;
+              
+              rdfs:range :Quelle ;
+              
+              rdfs:subPropertyOf :personIs ;
+              
+              rdfs:domain <http://www.w3.org/ns/prov#Person> .
+
+
+
+###  http://www.oneo.net/istErzeugerVon
+
+:istErzeugerVon rdf:type owl:ObjectProperty ;
+                
+                rdfs:range :Building ,
+                           :Furnishing ;
+                
+                rdfs:subPropertyOf :personIs ;
+                
+                rdfs:domain <http://www.w3.org/ns/prov#Person> .
+
+
+
+###  http://www.oneo.net/istStiffterVon
+
+:istStiffterVon rdf:type owl:ObjectProperty ;
+                
+                rdfs:range :Furnishing ;
+                
+                rdfs:subPropertyOf :personIs ;
+                
+                rdfs:domain <http://www.w3.org/ns/prov#Person> .
+
+
+
+###  http://www.oneo.net/istVerwandeltMit
+
+:istVerwandeltMit rdf:type owl:ObjectProperty ;
+                  
+                  rdfs:subPropertyOf :personIs ;
+                  
+                  rdfs:range <http://www.w3.org/ns/prov#Person> ;
+                  
+                  rdfs:domain <http://www.w3.org/ns/prov#Person> .
+
+
+
+###  http://www.oneo.net/occupation
+
+:occupation rdf:type owl:ObjectProperty ;
+            
+            rdfs:subPropertyOf :personIs ;
+            
+            rdfs:range <http://www.w3.org/ns/prov#Organization> ;
+            
+            rdfs:domain <http://www.w3.org/ns/prov#Person> .
+
+
+
+###  http://www.oneo.net/personIs
+
+:personIs rdf:type owl:ObjectProperty ;
+          
+          rdfs:subPropertyOf owl:topObjectProperty .
+
+
+
+###  http://www.oneo.net/transformationFrom
+
+:transformationFrom rdf:type owl:ObjectProperty ;
+                    
+                    rdfs:domain :Building ;
+                    
+                    rdfs:range :Building ,
+                               :Room ;
+                    
+                    rdfs:domain :Room .
+
+
+
+###  http://www.oneo.net/transformationResultedIn
+
+:transformationResultedIn rdf:type owl:ObjectProperty ;
+                          
+                          rdfs:range :Building ;
+                          
+                          rdfs:domain :Building ,
+                                      :Room ;
+                          
+                          rdfs:range :Room .
+
+
+
+
+
+#################################################################
+#
+#    Data properties
+#
+#################################################################
+
+
+###  http://www.oneo.net/birthday
+
+:birthday rdf:type owl:DatatypeProperty ;
+          
+          rdfs:range xsd:dateTime ;
+          
+          rdfs:domain <http://www.w3.org/ns/prov#Person> .
+
+
+
+###  http://www.oneo.net/death
+
+:death rdf:type owl:DatatypeProperty ;
+       
+       rdfs:range xsd:dateTime ;
+       
+       rdfs:domain <http://www.w3.org/ns/prov#Person> .
+
+
+
+###  http://www.oneo.net/destroyedReference
+
+:destroyedReference rdf:type owl:DatatypeProperty ;
+                    
+                    rdfs:range xsd:dateTime ;
+                    
+                    rdfs:domain <http://www.w3.org/ns/prov#Entity> .
+
+
+
+###  http://www.oneo.net/firstReference
+
+:firstReference rdf:type owl:DatatypeProperty ;
+                
+                rdfs:range xsd:dateTime ;
+                
+                rdfs:domain <http://www.w3.org/ns/prov#Entity> .
+
+
+
+###  http://www.oneo.net/hasFunction
+
+:hasFunction rdf:type owl:DatatypeProperty ;
+             
+             rdfs:range xsd:string ;
+             
+             rdfs:domain <http://www.w3.org/ns/prov#Entity> .
+
+
+
+###  http://www.oneo.net/hasIdentifier
+
+:hasIdentifier rdf:type owl:DatatypeProperty ;
+               
+               rdfs:range xsd:string ;
+               
+               rdfs:domain <http://www.w3.org/ns/prov#Entity> .
+
+
+
+###  http://www.oneo.net/hasName
+
+:hasName rdf:type owl:DatatypeProperty ;
+         
+         rdfs:range xsd:string ;
+         
+         rdfs:domain <http://www.w3.org/ns/prov#Entity> .
+
+
+
+
+
+#################################################################
+#
+#    Classes
+#
+#################################################################
+
+
+###  http://www.oneo.net/Altäre_und_Altarschmuck
+
+:Altäre_und_Altarschmuck rdf:type owl:Class ;
+                         
+                         rdfs:subClassOf :FurnishingFunction .
+
+
+
+###  http://www.oneo.net/ArchitectureType
+
+:ArchitectureType rdf:type owl:Class ;
+                  
+                  rdfs:subClassOf <http://www.w3.org/ns/prov#Entity> .
+
+
+
+###  http://www.oneo.net/Banklaken
+
+:Banklaken rdf:type owl:Class ;
+           
+           rdfs:subClassOf :Textilen .
+
+
+
+###  http://www.oneo.net/Building
+
+:Building rdf:type owl:Class ;
+          
+          rdfs:subClassOf :Site ;
+          
+          rdfs:comment "A specific entity of interest for the Toporaz Project"@en .
+
+
+
+###  http://www.oneo.net/BuildingFunction
+
+:BuildingFunction rdf:type owl:Class ;
+                  
+                  rdfs:subClassOf :Function .
+
+
+
+###  http://www.oneo.net/Dachgestaltung
+
+:Dachgestaltung rdf:type owl:Class ;
+                
+                rdfs:subClassOf :Kuenstlicher_Medium ,
+                                :OutsideFurnishing .
+
+
+
+###  http://www.oneo.net/Epitaphien
+
+:Epitaphien rdf:type owl:Class ;
+            
+            rdfs:subClassOf :FurnishingFunction .
+
+
+
+###  http://www.oneo.net/Farbfassung
+
+:Farbfassung rdf:type owl:Class ;
+             
+             rdfs:subClassOf :Wandmalereien .
+
+
+
+###  http://www.oneo.net/Flächenfassung
+
+:Flächenfassung rdf:type owl:Class ;
+                
+                rdfs:subClassOf :Kuenstlicher_Medium ,
+                                :OutsideFurnishing .
+
+
+
+###  http://www.oneo.net/Function
+
+:Function rdf:type owl:Class ;
+          
+          rdfs:comment "Function is a descriptive entity pointing to the functionality of a certain entity."@en .
+
+
+
+###  http://www.oneo.net/Funktion
+
+:Funktion rdf:type owl:Class ;
+          
+          rdfs:subClassOf :Furnishing .
+
+
+
+###  http://www.oneo.net/Furnishing
+
+:Furnishing rdf:type owl:Class ;
+            
+            rdfs:subClassOf <http://www.w3.org/ns/prov#Entity> .
+
+
+
+###  http://www.oneo.net/FurnishingFunction
+
+:FurnishingFunction rdf:type owl:Class ;
+                    
+                    rdfs:subClassOf :Function .
+
+
+
+###  http://www.oneo.net/FurnishingType
+
+:FurnishingType rdf:type owl:Class ;
+                
+                rdfs:subClassOf <http://www.w3.org/ns/prov#Entity> .
+
+
+
+###  http://www.oneo.net/Gemälde
+
+:Gemälde rdf:type owl:Class ;
+         
+         rdfs:subClassOf :Kuenstlicher_Medium .
+
+
+
+###  http://www.oneo.net/Glasmalereien
+
+:Glasmalereien rdf:type owl:Class ;
+               
+               rdfs:subClassOf :Kuenstlicher_Medium .
+
+
+
+###  http://www.oneo.net/Grabmäler
+
+:Grabmäler rdf:type owl:Class ;
+           
+           rdfs:subClassOf :FurnishingFunction .
+
+
+
+###  http://www.oneo.net/Holz
+
+:Holz rdf:type owl:Class ;
+      
+      rdfs:subClassOf :Wandmalereien .
+
+
+
+###  http://www.oneo.net/Kamin
+
+:Kamin rdf:type owl:Class ;
+       
+       rdfs:subClassOf :Kuenstlicher_Medium .
+
+
+
+###  http://www.oneo.net/Kirchenschatz
+
+:Kirchenschatz rdf:type owl:Class ;
+               
+               rdfs:subClassOf :FurnishingFunction .
+
+
+
+###  http://www.oneo.net/Kissen
+
+:Kissen rdf:type owl:Class ;
+        
+        rdfs:subClassOf :Textilen .
+
+
+
+###  http://www.oneo.net/Kuenstlicher_Medium
+
+:Kuenstlicher_Medium rdf:type owl:Class ;
+                     
+                     rdfs:subClassOf :Furnishing .
+
+
+
+###  http://www.oneo.net/Liturgische_Gewänder
+
+:Liturgische_Gewänder rdf:type owl:Class ;
+                      
+                      rdfs:subClassOf :Textilen .
+
+
+
+###  http://www.oneo.net/Möbel
+
+:Möbel rdf:type owl:Class ;
+       
+       rdfs:subClassOf :Kuenstlicher_Medium .
+
+
+
+###  http://www.oneo.net/OutsideFurnishing
+
+:OutsideFurnishing rdf:type owl:Class ;
+                   
+                   rdfs:subClassOf :Furnishing .
+
+
+
+###  http://www.oneo.net/OutsideFurnishingType
+
+:OutsideFurnishingType rdf:type owl:Class ;
+                       
+                       rdfs:subClassOf :FurnishingType .
+
+
+
+###  http://www.oneo.net/PublicSite
+
+:PublicSite rdf:type owl:Class ;
+            
+            rdfs:subClassOf :Site .
+
+
+
+###  http://www.oneo.net/PublicSiteFunction
+
+:PublicSiteFunction rdf:type owl:Class ;
+                    
+                    rdfs:subClassOf :BuildingFunction .
+
+
+
+###  http://www.oneo.net/Quelle
+
+:Quelle rdf:type owl:Class ;
+        
+        rdfs:subClassOf <http://www.w3.org/ns/prov#Entity> .
+
+
+
+###  http://www.oneo.net/Reconstruction
+
+:Reconstruction rdf:type owl:Class ;
+                
+                rdfs:subClassOf <http://www.w3.org/ns/prov#Activity> .
+
+
+
+###  http://www.oneo.net/Room
+
+:Room rdf:type owl:Class ;
+      
+      rdfs:subClassOf <http://www.w3.org/ns/prov#Entity> .
+
+
+
+###  http://www.oneo.net/RoomFunction
+
+:RoomFunction rdf:type owl:Class ;
+              
+              rdfs:subClassOf :Function .
+
+
+
+###  http://www.oneo.net/RoomSacralBuilding
+
+:RoomSacralBuilding rdf:type owl:Class ;
+                    
+                    rdfs:subClassOf :Room .
+
+
+
+###  http://www.oneo.net/SacralArchitecture
+
+:SacralArchitecture rdf:type owl:Class ;
+                    
+                    rdfs:subClassOf :ArchitectureType .
+
+
+
+###  http://www.oneo.net/SacralBuilding
+
+:SacralBuilding rdf:type owl:Class ;
+                
+                rdfs:subClassOf :Building .
+
+
+
+###  http://www.oneo.net/SacralFunction
+
+:SacralFunction rdf:type owl:Class ;
+                
+                rdfs:subClassOf :BuildingFunction .
+
+
+
+###  http://www.oneo.net/SacralRoomFunction
+
+:SacralRoomFunction rdf:type owl:Class ;
+                    
+                    rdfs:subClassOf :RoomFunction .
+
+
+
+###  http://www.oneo.net/Site
+
+:Site rdf:type owl:Class ;
+      
+      rdfs:subClassOf <http://www.w3.org/ns/prov#Entity> .
+
+
+
+###  http://www.oneo.net/Skulpturen
+
+:Skulpturen rdf:type owl:Class ;
+            
+            rdfs:subClassOf :Kuenstlicher_Medium ,
+                            :OutsideFurnishingType .
+
+
+
+###  http://www.oneo.net/Stein
+
+:Stein rdf:type owl:Class ;
+       
+       rdfs:subClassOf :Wandmalereien .
+
+
+
+###  http://www.oneo.net/Tapete
+
+:Tapete rdf:type owl:Class ;
+        
+        rdfs:subClassOf :Wandmalereien .
+
+
+
+###  http://www.oneo.net/Textilen
+
+:Textilen rdf:type owl:Class ;
+          
+          rdfs:subClassOf :Kuenstlicher_Medium .
+
+
+
+###  http://www.oneo.net/Transformation
+
+:Transformation rdf:type owl:Class ;
+                
+                rdfs:subClassOf :Reconstruction ;
+                
+                rdfs:comment "A Transformation is a Reconstruction activity that invokes a change in the building of interest from a specific function or architecture type to a new one. This will be referred to as a new building"@en .
+
+
+
+###  http://www.oneo.net/Wandbehänge
+
+:Wandbehänge rdf:type owl:Class ;
+             
+             rdfs:subClassOf :Textilen .
+
+
+
+###  http://www.oneo.net/Wandmalereien
+
+:Wandmalereien rdf:type owl:Class ;
+               
+               rdfs:subClassOf :Kuenstlicher_Medium ,
+                               :OutsideFurnishingType .
+
+
+
+
+
+#################################################################
+#
+#    Individuals
+#
+#################################################################
+
+
+###  http://www.oneo.net/Basilika
+
+:Basilika rdf:type :SacralArchitecture ,
+                   owl:NamedIndividual .
+
+
+
+###  http://www.oneo.net/Brunnen
+
+:Brunnen rdf:type :OutsideFurnishingType ,
+                  owl:NamedIndividual .
+
+
+
+###  http://www.oneo.net/Chor
+
+:Chor rdf:type :SacralRoomFunction ,
+               owl:NamedIndividual .
+
+
+
+###  http://www.oneo.net/Haken_und_so_Zeugs
+
+:Haken_und_so_Zeugs rdf:type :OutsideFurnishingType ,
+                             owl:NamedIndividual .
+
+
+
+###  http://www.oneo.net/Hallenkirche
+
+:Hallenkirche rdf:type :SacralArchitecture ,
+                       owl:NamedIndividual .
+
+
+
+###  http://www.oneo.net/Kapelle
+
+:Kapelle rdf:type :SacralFunction ,
+                  owl:NamedIndividual .
+
+
+
+###  http://www.oneo.net/Keller
+
+:Keller rdf:type :RoomFunction ,
+                 owl:NamedIndividual .
+
+
+
+###  http://www.oneo.net/Klosterkirche
+
+:Klosterkirche rdf:type :SacralFunction ,
+                        owl:NamedIndividual .
+
+
+
+###  http://www.oneo.net/Küche
+
+:Küche rdf:type :RoomFunction ,
+                owl:NamedIndividual .
+
+
+
+###  http://www.oneo.net/Mittelschiff
+
+:Mittelschiff rdf:type :SacralRoomFunction ,
+                       owl:NamedIndividual .
+
+
+
+###  http://www.oneo.net/Pfarrkirche
+
+:Pfarrkirche rdf:type :SacralFunction ,
+                      owl:NamedIndividual .
+
+
+
+###  http://www.oneo.net/Plasterung
+
+:Plasterung rdf:type :OutsideFurnishingType ,
+                     owl:NamedIndividual .
+
+
+
+###  http://www.oneo.net/Platz
+
+:Platz rdf:type :PublicSiteFunction ,
+                owl:NamedIndividual .
+
+
+
+###  http://www.oneo.net/RoomKapelle
+
+:RoomKapelle rdf:type :SacralRoomFunction ,
+                      owl:NamedIndividual .
+
+
+
+###  http://www.oneo.net/Saalkirche
+
+:Saalkirche rdf:type :SacralArchitecture ,
+                     owl:NamedIndividual .
+
+
+
+###  http://www.oneo.net/Sakristei
+
+:Sakristei rdf:type :SacralRoomFunction ,
+                    owl:NamedIndividual .
+
+
+
+###  http://www.oneo.net/Sanktuarium
+
+:Sanktuarium rdf:type :SacralRoomFunction ,
+                      owl:NamedIndividual .
+
+
+
+###  http://www.oneo.net/Seitenschiff
+
+:Seitenschiff rdf:type :SacralRoomFunction ,
+                       owl:NamedIndividual .
+
+
+
+###  http://www.oneo.net/Spitalkirche
+
+:Spitalkirche rdf:type :SacralFunction ,
+                       owl:NamedIndividual .
+
+
+
+###  http://www.oneo.net/StoneHouse
+
+:StoneHouse rdf:type :ArchitectureType ,
+                     owl:NamedIndividual .
+
+
+
+###  http://www.oneo.net/Straße
+
+:Straße rdf:type :PublicSiteFunction ,
+                 owl:NamedIndividual .
+
+
+
+###  http://www.oneo.net/Synagoge
+
+:Synagoge rdf:type :SacralFunction ,
+                   owl:NamedIndividual .
+
+
+
+###  http://www.oneo.net/Textilien
+
+:Textilien rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.oneo.net/TimberedHouse
+
+:TimberedHouse rdf:type :ArchitectureType ,
+                        owl:NamedIndividual .
+
+
+
+###  http://www.oneo.net/Treppe
+
+:Treppe rdf:type :RoomFunction ,
+                 owl:NamedIndividual .
+
+
+
+###  http://www.oneo.net/Wirtenschaftsgebäude
+
+:Wirtenschaftsgebäude rdf:type :BuildingFunction ,
+                               owl:NamedIndividual .
+
+
+
+###  http://www.oneo.net/Wirtschaftsgebäude
+
+:Wirtschaftsgebäude rdf:type :ArchitectureType ,
+                             owl:NamedIndividual .
+
+
+
+###  http://www.oneo.net/Wohn_und_Geschäftshaus
+
+:Wohn_und_Geschäftshaus rdf:type :BuildingFunction ,
+                                 owl:NamedIndividual .
+
+
+
+###  http://www.oneo.net/Wohnraum
+
+:Wohnraum rdf:type :RoomFunction ,
+                   owl:NamedIndividual .
+
+
+
+###  http://www.oneo.net/Zentralbau
+
+:Zentralbau rdf:type :SacralArchitecture ,
+                     owl:NamedIndividual .
+
+
+
+###  http://www.oneo.net/ÖffentlichesGebäude
+
+:ÖffentlichesGebäude rdf:type :ArchitectureType ,
+                              owl:NamedIndividual .
+
+
+
+###  http://www.oneo.net/Öffentliches_Gebäude
+
+:Öffentliches_Gebäude rdf:type :BuildingFunction ,
+                               owl:NamedIndividual .
+
+
+
+###  http://www.oneo.net/Laterne/Beleuchtung
+
+<http://www.oneo.net/Laterne/Beleuchtung> rdf:type :OutsideFurnishingType ,
+                                                   owl:NamedIndividual .
+
+
+
+
+###  Generated by the OWL API (version 3.5.0) http://owlapi.sourceforge.net
+

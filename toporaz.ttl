@@ -22,6 +22,8 @@
 
 :hadAddress rdf:type owl:ObjectProperty ;
             
+            rdfs:comment "A location can be an identifiable geographic place (ISO 19112), but it can also be a non-geographic place such as a directory, row, or column. As such, there are numerous ways in which location can be expressed, such as by a coordinate, address, landmark, and so forth."@en ;
+            
             rdfs:domain :Site ;
             
             rdfs:range <http://www.w3.org/ns/prov#Location> .
@@ -31,6 +33,8 @@
 ###  http://www.oneo.net/hasArchitectureType
 
 :hasArchitectureType rdf:type owl:ObjectProperty ;
+                     
+                     rdfs:comment "The property relates a Building to a specific Architecture Type." ;
                      
                      rdfs:range :ArchitectureType ;
                      
@@ -42,11 +46,13 @@
 
 :hasFunction rdf:type owl:ObjectProperty ;
              
-             rdfs:domain :Building ;
+             rdfs:comment """This property relates a toporaz:Site with a specific toporaz:Function.
+There are additional subclasses of this property depending on the specific function of a specific Building, eg:  SacralFunction"""@en ;
              
              rdfs:range :BuildingFunction ;
              
-             rdfs:domain :OutsideFurnishing .
+             rdfs:domain :OutsideFurnishing ,
+                         :Site .
 
 
 
@@ -75,6 +81,8 @@
 
 :hasOutsideFurnishingType rdf:type owl:ObjectProperty ;
                           
+                          rdfs:comment "This property relates a Building to an OutsideFurnishing (Außengestaltung)." ;
+                          
                           rdfs:domain :Building ;
                           
                           rdfs:range :OutsideFurnishingType ;
@@ -86,6 +94,8 @@
 ###  http://www.oneo.net/hasPublicSiteFunction
 
 :hasPublicSiteFunction rdf:type owl:ObjectProperty ;
+                       
+                       rdfs:comment "The property relates a toporaz:PublicSite with a specific toporaz:Function subclassed under toporaz:PublicSiteFunction"@en ;
                        
                        rdfs:domain :PublicSite ;
                        
@@ -99,6 +109,8 @@
 
 :hasReconstruction rdf:type owl:ObjectProperty ;
                    
+                   rdfs:comment "This property relates a specific Site with a toporaz:Reconstruction Activity"@en ;
+                   
                    rdfs:range :Reconstruction ;
                    
                    rdfs:domain :Site .
@@ -108,6 +120,8 @@
 ###  http://www.oneo.net/hasRoom
 
 :hasRoom rdf:type owl:ObjectProperty ;
+         
+         rdfs:comment "The property allows a Building to reference a number of contained Rooms" ;
          
          rdfs:domain :Building ;
          
@@ -284,6 +298,8 @@
 
 :transformationFrom rdf:type owl:ObjectProperty ;
                     
+                    rdfs:comment "The property relates an entity transformed to an Activity to a new entity"@en ;
+                    
                     rdfs:domain :Building ;
                     
                     rdfs:range :Building ,
@@ -296,6 +312,8 @@
 ###  http://www.oneo.net/transformationResultedIn
 
 :transformationResultedIn rdf:type owl:ObjectProperty ;
+                          
+                          rdfs:comment "The property relates an entity transformed to an Activity from an older entity."@en ;
                           
                           rdfs:range :Building ;
                           
@@ -339,6 +357,8 @@
 
 :destroyedReference rdf:type owl:DatatypeProperty ;
                     
+                    rdfs:comment "This property indicates the destroyed time of a specific Site. To be evaluated if this property should be removed in favor of an Activity subclass toporaz:Destroyed and a property toporaz:Destroyed"@en ;
+                    
                     rdfs:range xsd:dateTime ;
                     
                     rdfs:domain <http://www.w3.org/ns/prov#Entity> .
@@ -349,15 +369,20 @@
 
 :firstReference rdf:type owl:DatatypeProperty ;
                 
-                rdfs:range xsd:dateTime ;
+                rdfs:comment "This property points in time to the first reference this specific site has been mentioned."@en ;
                 
-                rdfs:domain <http://www.w3.org/ns/prov#Entity> .
+                rdfs:domain :Site ;
+                
+                rdfs:range xsd:dateTime .
 
 
 
 ###  http://www.oneo.net/hasFunction
 
 :hasFunction rdf:type owl:DatatypeProperty ;
+             
+             rdfs:comment """This property relates a toporaz:Site with a specific toporaz:Function.
+There are additional subclasses of this property depending on the specific function of a specific Building, eg:  SacralFunction"""@en ;
              
              rdfs:range xsd:string ;
              
@@ -369,6 +394,11 @@
 
 :hasIdentifier rdf:type owl:DatatypeProperty ;
                
+               rdfs:label "hasIdentifier"@en ;
+               
+               rdfs:comment """This property describes the naming or identification of any real world item by an dentifier. 
+The property may record the identifier that was assigned to an item in an Identifier Assignment activity."""@en ;
+               
                rdfs:range xsd:string ;
                
                rdfs:domain <http://www.w3.org/ns/prov#Entity> .
@@ -378,6 +408,11 @@
 ###  http://www.oneo.net/hasName
 
 :hasName rdf:type owl:DatatypeProperty ;
+         
+         rdfs:label "hasName"@en ;
+         
+         rdfs:comment """The property relates an Entity with a reference name. Although an Entity might have an identifier, or a separate Name, this is a reference-name, or a well known term. 
+In case of a modern building, this may be the actual name of the building, although in time this entity might have had different names."""@en ;
          
          rdfs:range xsd:string ;
          

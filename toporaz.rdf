@@ -4,6 +4,7 @@
 <!DOCTYPE rdf:RDF [
     <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
     <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY xml "http://www.w3.org/XML/1998/namespace" >
     <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
     <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
 ]>
@@ -13,6 +14,7 @@
      xml:base="http://www.oneo.net/"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
     <owl:Ontology rdf:about="http://www.oneo.net/">
@@ -35,6 +37,7 @@
     <!-- http://www.oneo.net/hadAddress -->
 
     <owl:ObjectProperty rdf:about="http://www.oneo.net/hadAddress">
+        <rdfs:comment xml:lang="en">A location can be an identifiable geographic place (ISO 19112), but it can also be a non-geographic place such as a directory, row, or column. As such, there are numerous ways in which location can be expressed, such as by a coordinate, address, landmark, and so forth.</rdfs:comment>
         <rdfs:domain rdf:resource="http://www.oneo.net/Site"/>
         <rdfs:range rdf:resource="http://www.w3.org/ns/prov#Location"/>
     </owl:ObjectProperty>
@@ -44,6 +47,7 @@
     <!-- http://www.oneo.net/hasArchitectureType -->
 
     <owl:ObjectProperty rdf:about="http://www.oneo.net/hasArchitectureType">
+        <rdfs:comment>The property relates a Building to a specific Architecture Type.</rdfs:comment>
         <rdfs:range rdf:resource="http://www.oneo.net/ArchitectureType"/>
         <rdfs:domain rdf:resource="http://www.oneo.net/Building"/>
     </owl:ObjectProperty>
@@ -53,9 +57,11 @@
     <!-- http://www.oneo.net/hasFunction -->
 
     <owl:ObjectProperty rdf:about="http://www.oneo.net/hasFunction">
-        <rdfs:domain rdf:resource="http://www.oneo.net/Building"/>
+        <rdfs:comment xml:lang="en">This property relates a toporaz:Site with a specific toporaz:Function.
+There are additional subclasses of this property depending on the specific function of a specific Building, eg:  SacralFunction</rdfs:comment>
         <rdfs:range rdf:resource="http://www.oneo.net/BuildingFunction"/>
         <rdfs:domain rdf:resource="http://www.oneo.net/OutsideFurnishing"/>
+        <rdfs:domain rdf:resource="http://www.oneo.net/Site"/>
     </owl:ObjectProperty>
     
 
@@ -82,6 +88,7 @@
     <!-- http://www.oneo.net/hasOutsideFurnishingType -->
 
     <owl:ObjectProperty rdf:about="http://www.oneo.net/hasOutsideFurnishingType">
+        <rdfs:comment>This property relates a Building to an OutsideFurnishing (Außengestaltung).</rdfs:comment>
         <rdfs:domain rdf:resource="http://www.oneo.net/Building"/>
         <rdfs:range rdf:resource="http://www.oneo.net/OutsideFurnishingType"/>
         <rdfs:subPropertyOf rdf:resource="http://www.oneo.net/hasFurnishing"/>
@@ -92,6 +99,7 @@
     <!-- http://www.oneo.net/hasPublicSiteFunction -->
 
     <owl:ObjectProperty rdf:about="http://www.oneo.net/hasPublicSiteFunction">
+        <rdfs:comment xml:lang="en">The property relates a toporaz:PublicSite with a specific toporaz:Function subclassed under toporaz:PublicSiteFunction</rdfs:comment>
         <rdfs:domain rdf:resource="http://www.oneo.net/PublicSite"/>
         <rdfs:range rdf:resource="http://www.oneo.net/PublicSiteFunction"/>
         <rdfs:subPropertyOf rdf:resource="http://www.oneo.net/hasFunction"/>
@@ -102,6 +110,7 @@
     <!-- http://www.oneo.net/hasReconstruction -->
 
     <owl:ObjectProperty rdf:about="http://www.oneo.net/hasReconstruction">
+        <rdfs:comment xml:lang="en">This property relates a specific Site with a toporaz:Reconstruction Activity</rdfs:comment>
         <rdfs:range rdf:resource="http://www.oneo.net/Reconstruction"/>
         <rdfs:domain rdf:resource="http://www.oneo.net/Site"/>
     </owl:ObjectProperty>
@@ -111,6 +120,7 @@
     <!-- http://www.oneo.net/hasRoom -->
 
     <owl:ObjectProperty rdf:about="http://www.oneo.net/hasRoom">
+        <rdfs:comment>The property allows a Building to reference a number of contained Rooms</rdfs:comment>
         <rdfs:domain rdf:resource="http://www.oneo.net/Building"/>
         <rdfs:range rdf:resource="http://www.oneo.net/Room"/>
     </owl:ObjectProperty>
@@ -259,6 +269,7 @@
     <!-- http://www.oneo.net/transformationFrom -->
 
     <owl:ObjectProperty rdf:about="http://www.oneo.net/transformationFrom">
+        <rdfs:comment xml:lang="en">The property relates an entity transformed to an Activity to a new entity</rdfs:comment>
         <rdfs:domain rdf:resource="http://www.oneo.net/Building"/>
         <rdfs:range rdf:resource="http://www.oneo.net/Building"/>
         <rdfs:range rdf:resource="http://www.oneo.net/Room"/>
@@ -270,6 +281,7 @@
     <!-- http://www.oneo.net/transformationResultedIn -->
 
     <owl:ObjectProperty rdf:about="http://www.oneo.net/transformationResultedIn">
+        <rdfs:comment xml:lang="en">The property relates an entity transformed to an Activity from an older entity.</rdfs:comment>
         <rdfs:range rdf:resource="http://www.oneo.net/Building"/>
         <rdfs:domain rdf:resource="http://www.oneo.net/Building"/>
         <rdfs:domain rdf:resource="http://www.oneo.net/Room"/>
@@ -310,6 +322,7 @@
     <!-- http://www.oneo.net/destroyedReference -->
 
     <owl:DatatypeProperty rdf:about="http://www.oneo.net/destroyedReference">
+        <rdfs:comment xml:lang="en">This property indicates the destroyed time of a specific Site. To be evaluated if this property should be removed in favor of an Activity subclass toporaz:Destroyed and a property toporaz:Destroyed</rdfs:comment>
         <rdfs:range rdf:resource="&xsd;dateTime"/>
         <rdfs:domain rdf:resource="http://www.w3.org/ns/prov#Entity"/>
     </owl:DatatypeProperty>
@@ -319,8 +332,9 @@
     <!-- http://www.oneo.net/firstReference -->
 
     <owl:DatatypeProperty rdf:about="http://www.oneo.net/firstReference">
+        <rdfs:comment xml:lang="en">This property points in time to the first reference this specific site has been mentioned.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.oneo.net/Site"/>
         <rdfs:range rdf:resource="&xsd;dateTime"/>
-        <rdfs:domain rdf:resource="http://www.w3.org/ns/prov#Entity"/>
     </owl:DatatypeProperty>
     
 
@@ -328,6 +342,8 @@
     <!-- http://www.oneo.net/hasFunction -->
 
     <owl:DatatypeProperty rdf:about="http://www.oneo.net/hasFunction">
+        <rdfs:comment xml:lang="en">This property relates a toporaz:Site with a specific toporaz:Function.
+There are additional subclasses of this property depending on the specific function of a specific Building, eg:  SacralFunction</rdfs:comment>
         <rdfs:range rdf:resource="&xsd;string"/>
         <rdfs:domain rdf:resource="http://www.w3.org/ns/prov#Entity"/>
     </owl:DatatypeProperty>
@@ -337,6 +353,9 @@
     <!-- http://www.oneo.net/hasIdentifier -->
 
     <owl:DatatypeProperty rdf:about="http://www.oneo.net/hasIdentifier">
+        <rdfs:label xml:lang="en">hasIdentifier</rdfs:label>
+        <rdfs:comment xml:lang="en">This property describes the naming or identification of any real world item by an dentifier. 
+The property may record the identifier that was assigned to an item in an Identifier Assignment activity.</rdfs:comment>
         <rdfs:range rdf:resource="&xsd;string"/>
         <rdfs:domain rdf:resource="http://www.w3.org/ns/prov#Entity"/>
     </owl:DatatypeProperty>
@@ -346,6 +365,9 @@
     <!-- http://www.oneo.net/hasName -->
 
     <owl:DatatypeProperty rdf:about="http://www.oneo.net/hasName">
+        <rdfs:label xml:lang="en">hasName</rdfs:label>
+        <rdfs:comment xml:lang="en">The property relates an Entity with a reference name. Although an Entity might have an identifier, or a separate Name, this is a reference-name, or a well known term. 
+In case of a modern building, this may be the actual name of the building, although in time this entity might have had different names.</rdfs:comment>
         <rdfs:range rdf:resource="&xsd;string"/>
         <rdfs:domain rdf:resource="http://www.w3.org/ns/prov#Entity"/>
     </owl:DatatypeProperty>

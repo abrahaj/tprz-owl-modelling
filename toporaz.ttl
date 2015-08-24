@@ -18,6 +18,18 @@
 #################################################################
 
 
+###  http://www.oneo.net/belongsToBuilding
+
+:belongsToBuilding rdf:type owl:ObjectProperty .
+
+
+
+###  http://www.oneo.net/belongsToRoom
+
+:belongsToRoom rdf:type owl:ObjectProperty .
+
+
+
 ###  http://www.oneo.net/hadAddress
 
 :hadAddress rdf:type owl:ObjectProperty ;
@@ -39,6 +51,31 @@
                      rdfs:range :ArchitectureType ;
                      
                      rdfs:domain :Building .
+
+
+
+###  http://www.oneo.net/hasBuilding
+
+:hasBuilding rdf:type owl:ObjectProperty ;
+             
+             rdfs:range :Building ;
+             
+             rdfs:domain :BuildingGroup ;
+             
+             rdfs:range :PublicSite .
+
+
+
+###  http://www.oneo.net/hasBuildingSection
+
+:hasBuildingSection rdf:type owl:InverseFunctionalProperty ,
+                             owl:ObjectProperty ;
+                    
+                    rdfs:domain :Building ;
+                    
+                    rdfs:range :BuildingSection ;
+                    
+                    owl:inverseOf :belongsToBuilding .
 
 
 
@@ -123,9 +160,38 @@ There are additional subclasses of this property depending on the specific funct
          
          rdfs:comment "The property allows a Building to reference a number of contained Rooms" ;
          
-         rdfs:domain :Building ;
+         rdfs:domain :Building ,
+                     :BuildingSection ;
          
-         rdfs:range :Room .
+         rdfs:range :Room ;
+         
+         owl:inverseOf :roomBelongsTo .
+
+
+
+###  http://www.oneo.net/hasRoomElement
+
+:hasRoomElement rdf:type owl:ObjectProperty ;
+                
+                rdfs:domain :Room ;
+                
+                rdfs:range :RoomElement ;
+                
+                owl:inverseOf :belongsToRoom .
+
+
+
+###  http://www.oneo.net/hasRoomFunction
+
+:hasRoomFunction rdf:type owl:ObjectProperty ;
+                 
+                 rdfs:comment "Relates a room with a specific function. Normally a room inherits the function from the building it is contained in. In special cases, there are rooms that have a different functionality from their building."@en ;
+                 
+                 rdfs:domain :Room ;
+                 
+                 rdfs:range :RoomFunction ;
+                 
+                 rdfs:subPropertyOf :hasFunction .
 
 
 
@@ -294,6 +360,12 @@ There are additional subclasses of this property depending on the specific funct
 
 
 
+###  http://www.oneo.net/roomBelongsTo
+
+:roomBelongsTo rdf:type owl:ObjectProperty .
+
+
+
 ###  http://www.oneo.net/transformationFrom
 
 :transformationFrom rdf:type owl:ObjectProperty ;
@@ -312,8 +384,6 @@ There are additional subclasses of this property depending on the specific funct
 ###  http://www.oneo.net/transformationResultedIn
 
 :transformationResultedIn rdf:type owl:ObjectProperty ;
-                          
-                          rdfs:comment "The property relates an entity transformed to an Activity from an older entity."@en ;
                           
                           rdfs:range :Building ;
                           
@@ -468,6 +538,44 @@ In case of a modern building, this may be the actual name of the building, altho
 :BuildingFunction rdf:type owl:Class ;
                   
                   rdfs:subClassOf :Function .
+
+
+
+###  http://www.oneo.net/BuildingGroup
+
+:BuildingGroup rdf:type owl:Class ;
+               
+               rdfs:subClassOf :Site ;
+               
+               rdfs:comment "Apparently modelled as BIM-Ebenmodellen in Architectur"@en .
+
+
+
+###  http://www.oneo.net/BuildingPhase
+
+:BuildingPhase rdf:type owl:Class ;
+               
+               rdfs:subClassOf :Period ;
+               
+               rdfs:comment "BuildingPhases are distinct time periods characterized by specific constructions"@en .
+
+
+
+###  http://www.oneo.net/BuildingSection
+
+:BuildingSection rdf:type owl:Class ;
+                 
+                 rdfs:subClassOf :Site ;
+                 
+                 rdfs:comment "This entity denotes a specific region within a building."@en .
+
+
+
+###  http://www.oneo.net/BuildingTime
+
+:BuildingTime rdf:type owl:Class ;
+              
+              rdfs:subClassOf :Period .
 
 
 
@@ -641,6 +749,12 @@ In case of a modern building, this may be the actual name of the building, altho
 
 
 
+###  http://www.oneo.net/Period
+
+:Period rdf:type owl:Class .
+
+
+
 ###  http://www.oneo.net/PublicSite
 
 :PublicSite rdf:type owl:Class ;
@@ -678,6 +792,16 @@ In case of a modern building, this may be the actual name of the building, altho
 :Room rdf:type owl:Class ;
       
       rdfs:subClassOf <http://www.w3.org/ns/prov#Entity> .
+
+
+
+###  http://www.oneo.net/RoomElement
+
+:RoomElement rdf:type owl:Class ;
+             
+             rdfs:subClassOf <http://www.w3.org/ns/prov#Entity> ;
+             
+             rdfs:comment "This entity points to a specific section within a room. This might be a wall, a specific region etc"@en .
 
 
 
@@ -733,7 +857,9 @@ In case of a modern building, this may be the actual name of the building, altho
 
 :Site rdf:type owl:Class ;
       
-      rdfs:subClassOf <http://www.w3.org/ns/prov#Entity> .
+      rdfs:subClassOf <http://www.w3.org/ns/prov#Entity> ;
+      
+      rdfs:comment "A site is a geographical positioned entity. As a prov:Entity already provides a property relating it to a georeference, there is no additional property added for this class, beside the logical representation of it."@en .
 
 
 

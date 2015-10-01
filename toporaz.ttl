@@ -4,11 +4,11 @@
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@base <http://www.oneo.net/> .
+@base <http://www.oneo.net/toporaz/> .
 
-<http://www.oneo.net/> rdf:type owl:Ontology ;
-                       
-                       owl:imports <http://www.w3.org/ns/prov-o-20130430> .
+<http://www.oneo.net/toporaz/> rdf:type owl:Ontology ;
+                               
+                               owl:imports <http://www.w3.org/ns/prov-o-20130430> .
 
 
 #################################################################
@@ -66,16 +66,26 @@
 
 
 
-###  http://www.oneo.net/hasBuildingSection
+###  http://www.oneo.net/hasBuildingPart
 
-:hasBuildingSection rdf:type owl:InverseFunctionalProperty ,
-                             owl:ObjectProperty ;
-                    
-                    rdfs:domain :Building ;
-                    
-                    rdfs:range :BuildingSection ;
-                    
-                    owl:inverseOf :belongsToBuilding .
+:hasBuildingPart rdf:type owl:InverseFunctionalProperty ,
+                          owl:ObjectProperty ;
+                 
+                 rdfs:domain :Building ;
+                 
+                 rdfs:range :BuildingPart ;
+                 
+                 owl:inverseOf :belongsToBuilding .
+
+
+
+###  http://www.oneo.net/hasBuildingPhase
+
+:hasBuildingPhase rdf:type owl:ObjectProperty ;
+                  
+                  rdfs:domain :BuildingPart ;
+                  
+                  rdfs:range :BuildingPhase .
 
 
 
@@ -161,11 +171,13 @@ There are additional subclasses of this property depending on the specific funct
          rdfs:comment "The property allows a Building to reference a number of contained Rooms" ;
          
          rdfs:domain :Building ,
-                     :BuildingSection ;
+                     :BuildingPart ;
          
          rdfs:range :Room ;
          
-         owl:inverseOf :roomBelongsTo .
+         owl:inverseOf :roomBelongsTo ;
+         
+         rdfs:domain :Level .
 
 
 
@@ -228,6 +240,17 @@ There are additional subclasses of this property depending on the specific funct
                rdfs:domain :SacralBuilding ;
                
                rdfs:subPropertyOf :hasRoom .
+
+
+
+###  http://www.oneo.net/isNutzerVon
+
+:isNutzerVon rdf:type owl:ObjectProperty ;
+             
+             rdfs:range :Building ,
+                        :Room ;
+             
+             rdfs:domain <http://www.w3.org/ns/prov#Agent> .
 
 
 
@@ -394,6 +417,76 @@ There are additional subclasses of this property depending on the specific funct
 
 
 
+###  http://www.oneo.net/toporaz/hasFacade
+
+:hasFacade rdf:type owl:ObjectProperty ;
+           
+           rdfs:domain :BuildingPart ;
+           
+           rdfs:range :Facade ;
+           
+           owl:inverseOf :isFacadeOf .
+
+
+
+###  http://www.oneo.net/toporaz/hasField
+
+:hasField rdf:type owl:ObjectProperty ;
+          
+          rdfs:range :Field ;
+          
+          rdfs:domain :Parish ;
+          
+          owl:inverseOf :isFieldOf .
+
+
+
+###  http://www.oneo.net/toporaz/hasParcel
+
+:hasParcel rdf:type owl:ObjectProperty ;
+           
+           rdfs:domain :Field ;
+           
+           rdfs:range :Parcel ;
+           
+           owl:inverseOf :isParcelOf ;
+           
+           rdfs:subPropertyOf owl:topObjectProperty .
+
+
+
+###  http://www.oneo.net/toporaz/hasParentParcel
+
+:hasParentParcel rdf:type owl:ObjectProperty ;
+                 
+                 rdfs:range :Parcel ;
+                 
+                 rdfs:domain :Parcel .
+
+
+
+###  http://www.oneo.net/toporaz/isFacadeOf
+
+:isFacadeOf rdf:type owl:ObjectProperty .
+
+
+
+###  http://www.oneo.net/toporaz/isFieldOf
+
+:isFieldOf rdf:type owl:ObjectProperty .
+
+
+
+###  http://www.oneo.net/toporaz/isParcelOf
+
+:isParcelOf rdf:type owl:ObjectProperty ;
+            
+            rdfs:range :Field ;
+            
+            rdfs:domain :Parcel .
+
+
+
 
 
 #################################################################
@@ -447,6 +540,18 @@ There are additional subclasses of this property depending on the specific funct
 
 
 
+###  http://www.oneo.net/hasBeheizbarkeit
+
+:hasBeheizbarkeit rdf:type owl:DatatypeProperty ;
+                  
+                  rdfs:comment "Beheizbarkeit der Räume sollte als Attribut für die Bauforschung aufgenommen werden"@de ;
+                  
+                  rdfs:domain :Room ;
+                  
+                  rdfs:range rdf:XMLLiteral .
+
+
+
 ###  http://www.oneo.net/hasFunction
 
 :hasFunction rdf:type owl:DatatypeProperty ;
@@ -487,6 +592,273 @@ In case of a modern building, this may be the actual name of the building, altho
          rdfs:range xsd:string ;
          
          rdfs:domain <http://www.w3.org/ns/prov#Entity> .
+
+
+
+###  http://www.oneo.net/toporaz/LevelGround
+
+:LevelGround rdf:type owl:DatatypeProperty ;
+             
+             rdfs:label "Bodenniveau"@de ;
+             
+             rdfs:comment "eg: 1,22 m ü. NHN"@en ;
+             
+             rdfs:domain :Level ;
+             
+             rdfs:range rdfs:Literal .
+
+
+
+###  http://www.oneo.net/toporaz/LevelHeight
+
+:LevelHeight rdf:type owl:DatatypeProperty ;
+             
+             rdfs:label "Ebenhöhe"@de ;
+             
+             rdfs:comment "height of the level from ground to ceiling – eg: 4,50m"@en ;
+             
+             rdfs:domain :Level ;
+             
+             rdfs:range rdfs:Literal .
+
+
+
+###  http://www.oneo.net/toporaz/hasConservationStatus
+
+:hasConservationStatus rdf:type owl:DatatypeProperty ;
+                       
+                       rdfs:comment "ConservationStatus (Erhaltungszustand) [T] – only 3 possibilities seem to be useful: complete (vollständig), ruined (ruinös), demolished (zerstört)"@en ;
+                       
+                       rdfs:domain :Site .
+
+
+
+###  http://www.oneo.net/toporaz/hasDoor
+
+:hasDoor rdf:type owl:DatatypeProperty ;
+         
+         rdfs:label "hatTüröffnungen"@en ;
+         
+         rdfs:comment "just the number, it can change over time – eg: 2"@en ;
+         
+         rdfs:domain :RoomElement ;
+         
+         rdfs:range xsd:integer .
+
+
+
+###  http://www.oneo.net/toporaz/hasFacadeAxes
+
+:hasFacadeAxes rdf:type owl:DatatypeProperty ;
+               
+               rdfs:comment "regular number, in the picture its eg: 3"@en ;
+               
+               rdfs:domain :Facade ;
+               
+               rdfs:range xsd:integer .
+
+
+
+###  http://www.oneo.net/toporaz/hasFacadeDirection
+
+:hasFacadeDirection rdf:type owl:DatatypeProperty ;
+                    
+                    rdfs:comment "orientation of the facade in geographic cardinal directions  - eg:  188°"@en ;
+                    
+                    rdfs:domain :Facade ;
+                    
+                    rdfs:range rdfs:Literal .
+
+
+
+###  http://www.oneo.net/toporaz/hasFacadeElements
+
+:hasFacadeElements rdf:type owl:DatatypeProperty ;
+                   
+                   rdfs:comment "There are lots of possibilities eg: risalit(Risalit), oriel (Erker), bay window (Auslucht)"@en ;
+                   
+                   rdfs:domain :Facade ;
+                   
+                   rdfs:range rdfs:Literal .
+
+
+
+###  http://www.oneo.net/toporaz/hasLevelLocation
+
+:hasLevelLocation rdf:type owl:DatatypeProperty ;
+                  
+                  rdfs:label "Ebenenlage"@de ;
+                  
+                  rdfs:comment "to distinguish between basement and upper floors, or semi-basement which is both, so its either one or both – eg: upper floor (Obergeschoss) & basement (Untergeschoss)"@en ;
+                  
+                  rdfs:domain :Level ;
+                  
+                  rdfs:range rdfs:Literal .
+
+
+
+###  http://www.oneo.net/toporaz/hasLevelNumber
+
+:hasLevelNumber rdf:type owl:DatatypeProperty ;
+                
+                rdfs:label "Ebenennummer"@de ;
+                
+                rdfs:comment "to see how many floors the building has – eg: 5 upper floor, 2 basement"@en ;
+                
+                rdfs:domain :Level ;
+                
+                rdfs:range rdfs:Literal .
+
+
+
+###  http://www.oneo.net/toporaz/hasMaterial
+
+:hasMaterial rdf:type owl:DatatypeProperty ;
+             
+             rdfs:comment "plaster (Putz), brick (Ziegel), wood (Holz), concrete (Beton), stone (Naturstein), sandstone (Sandstein)"@en ;
+             
+             rdfs:domain :RoomElement ;
+             
+             rdfs:range rdfs:Literal .
+
+
+
+###  http://www.oneo.net/toporaz/hasRoofColour
+
+:hasRoofColour rdf:type owl:DatatypeProperty ;
+               
+               rdfs:label "DachFarbe"@de ;
+               
+               rdfs:comment ""@en ;
+               
+               rdfs:domain :Roof ;
+               
+               rdfs:range rdfs:Literal .
+
+
+
+###  http://www.oneo.net/toporaz/hasRoofDirection
+
+:hasRoofDirection rdf:type owl:DatatypeProperty ;
+                  
+                  rdfs:label "Dachausrichtung"@de ;
+                  
+                  rdfs:comment "orientation of the roof in geographic cardinal directions (see pic), there can be several directions for one roof  - eg:  188° & 345°"@en ;
+                  
+                  rdfs:domain :Roof ;
+                  
+                  rdfs:range rdfs:Literal .
+
+
+
+###  http://www.oneo.net/toporaz/hasRoofElement
+
+:hasRoofElement rdf:type owl:DatatypeProperty ;
+                
+                rdfs:label "Dachelemente"@de ;
+                
+                rdfs:comment "fixed set, incomplete: fleche (Dachreiter), dormer (Dachgaube)"@en ;
+                
+                rdfs:domain :Roof ;
+                
+                rdfs:range rdfs:Literal .
+
+
+
+###  http://www.oneo.net/toporaz/hasRoofMaterial
+
+:hasRoofMaterial rdf:type owl:DatatypeProperty ;
+                 
+                 rdfs:label "Dachmaterial"@de ;
+                 
+                 rdfs:comment "also fixed set that is incomplete: slate (Schiefer), clay (Ton), reeds (Reet) ...."@en ;
+                 
+                 rdfs:domain :Roof ;
+                 
+                 rdfs:range rdfs:Literal .
+
+
+
+###  http://www.oneo.net/toporaz/hasRoofShape
+
+:hasRoofShape rdf:type owl:DatatypeProperty ;
+              
+              rdfs:label "Dachform"@de ;
+              
+              rdfs:comment "fixed set of terms but this might not be complete: flat (Flachdach), skillion (Pultdach), gabled (Satteldach), half-hipped (Krüppelwalmdach), hipped (Walmdach), pyramidal (Zeltdach), gambrel (Mansard-Giebeldach), mansard (Mansard-Walmdach), dome (Kuppeldach), onion (Zwiebelhelm), round (Tonnendach)"@en ;
+              
+              rdfs:domain :Roof ;
+              
+              rdfs:range rdfs:Literal .
+
+
+
+###  http://www.oneo.net/toporaz/hasRoomBezeichnung
+
+:hasRoomBezeichnung rdf:type owl:DatatypeProperty ;
+                    
+                    rdfs:comment "not necessarily filled in. Could be free text or a sort of numbering. - eg: Bernsteinzimmer, R104"@en ;
+                    
+                    rdfs:domain :Room ;
+                    
+                    rdfs:range rdfs:Literal .
+
+
+
+###  http://www.oneo.net/toporaz/hasRoomElementDirection
+
+:hasRoomElementDirection rdf:type owl:DatatypeProperty ;
+                         
+                         rdfs:label "Raumelementausrichtung"@de ;
+                         
+                         rdfs:comment "only for walls, to distinguish - eg:  188°"@en ;
+                         
+                         rdfs:domain :RoomElement ;
+                         
+                         rdfs:range rdfs:Literal .
+
+
+
+###  http://www.oneo.net/toporaz/hasRoomElementType
+
+:hasRoomElementType rdf:type owl:DatatypeProperty ;
+                    
+                    rdfs:label "Raumelementtyp"@de ;
+                    
+                    rdfs:comment "can be: ceiling (Decke) (1), wall (Wand) (2), floor (Boden) (3)"@en ;
+                    
+                    rdfs:domain :RoomElement ;
+                    
+                    rdfs:range rdfs:Literal .
+
+
+
+###  http://www.oneo.net/toporaz/hasType
+
+:hasType rdf:type owl:DatatypeProperty ;
+         
+         rdfs:range [ rdf:type rdfs:Datatype ;
+                      owl:oneOf [ rdf:type rdf:List ;
+                                  rdf:first "physician_generalPractice" ;
+                                  rdf:rest [ rdf:type rdf:List ;
+                                             rdf:first "specialist_neurologist" ;
+                                             rdf:rest [ rdf:type rdf:List ;
+                                                        rdf:first "specialist_neurosurgeon" ;
+                                                        rdf:rest rdf:nil
+                                                      ]
+                                           ]
+                                ]
+                    ] .
+
+
+
+###  http://www.oneo.net/toporaz/hasWindow
+
+:hasWindow rdf:type owl:DatatypeProperty ;
+           
+           rdfs:domain :RoomElement ;
+           
+           rdfs:range xsd:integer .
 
 
 
@@ -551,6 +923,19 @@ In case of a modern building, this may be the actual name of the building, altho
 
 
 
+###  http://www.oneo.net/BuildingPart
+
+:BuildingPart rdf:type owl:Class ;
+              
+              rdfs:label "Gebäudeteil"@de ,
+                         "BuildingPart"@en ;
+              
+              rdfs:subClassOf :Site ;
+              
+              rdfs:comment "This entity denotes a specific region within a building."@en .
+
+
+
 ###  http://www.oneo.net/BuildingPhase
 
 :BuildingPhase rdf:type owl:Class ;
@@ -558,16 +943,6 @@ In case of a modern building, this may be the actual name of the building, altho
                rdfs:subClassOf :Period ;
                
                rdfs:comment "BuildingPhases are distinct time periods characterized by specific constructions"@en .
-
-
-
-###  http://www.oneo.net/BuildingSection
-
-:BuildingSection rdf:type owl:Class ;
-                 
-                 rdfs:subClassOf :Site ;
-                 
-                 rdfs:comment "This entity denotes a specific region within a building."@en .
 
 
 
@@ -920,6 +1295,72 @@ In case of a modern building, this may be the actual name of the building, altho
                
                rdfs:subClassOf :Kuenstlicher_Medium ,
                                :OutsideFurnishingType .
+
+
+
+###  http://www.oneo.net/toporaz/Facade
+
+:Facade rdf:type owl:Class ;
+        
+        rdfs:label "Fassade"@de ,
+                   "Facade"@en ;
+        
+        rdfs:subClassOf <http://www.w3.org/ns/prov#Entity> .
+
+
+
+###  http://www.oneo.net/toporaz/Field
+
+:Field rdf:type owl:Class ;
+       
+       rdfs:label "Flur"@de ,
+                  "Field"@en ;
+       
+       rdfs:subClassOf :Site ;
+       
+       rdfs:comment "Field, usually a number in registrations"@en .
+
+
+
+###  http://www.oneo.net/toporaz/Level
+
+:Level rdf:type owl:Class ;
+       
+       rdfs:subClassOf <http://www.w3.org/ns/prov#Entity> .
+
+
+
+###  http://www.oneo.net/toporaz/Parcel
+
+:Parcel rdf:type owl:Class ;
+        
+        rdfs:label "Flürstuck"@de ,
+                   "Parcel"@en ;
+        
+        rdfs:subClassOf :Site ;
+        
+        rdfs:comment "Field and parcel are an organizational division only used in Germany to reference a certain piece of physical land to a unique code for purposes of urban planning and taxation"@en .
+
+
+
+###  http://www.oneo.net/toporaz/Parish
+
+:Parish rdf:type owl:Class ;
+        
+        rdfs:label "Gemarkung"@de ,
+                   "Parish"@en ;
+        
+        rdfs:subClassOf :Site ;
+        
+        rdfs:comment "The hierarchy of this Division is usually Gemarkung (engl. parish) – usually the name of a community"@en .
+
+
+
+###  http://www.oneo.net/toporaz/Roof
+
+:Roof rdf:type owl:Class ;
+      
+      rdfs:subClassOf <http://www.w3.org/ns/prov#Entity> .
 
 
 

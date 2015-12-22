@@ -2,6 +2,7 @@
 
 
 <!DOCTYPE rdf:RDF [
+    <!ENTITY toporaz "http://www.oneo.net/" >
     <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
     <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
     <!ENTITY xml "http://www.w3.org/XML/1998/namespace" >
@@ -10,14 +11,15 @@
 ]>
 
 
-<rdf:RDF xmlns="http://www.oneo.net/"
-     xml:base="http://www.oneo.net/"
+<rdf:RDF xmlns="&toporaz;toporaz/"
+     xml:base="&toporaz;toporaz/"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:xml="http://www.w3.org/XML/1998/namespace"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
-    <owl:Ontology rdf:about="http://www.oneo.net/">
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:toporaz="http://www.oneo.net/">
+    <owl:Ontology rdf:about="&toporaz;toporaz/">
         <owl:imports rdf:resource="http://www.w3.org/ns/prov-o-20130430"/>
     </owl:Ontology>
     
@@ -36,21 +38,21 @@
 
     <!-- http://www.oneo.net/belongsToBuilding -->
 
-    <owl:ObjectProperty rdf:about="http://www.oneo.net/belongsToBuilding"/>
+    <owl:ObjectProperty rdf:about="&toporaz;belongsToBuilding"/>
     
 
 
     <!-- http://www.oneo.net/belongsToRoom -->
 
-    <owl:ObjectProperty rdf:about="http://www.oneo.net/belongsToRoom"/>
+    <owl:ObjectProperty rdf:about="&toporaz;belongsToRoom"/>
     
 
 
     <!-- http://www.oneo.net/hadAddress -->
 
-    <owl:ObjectProperty rdf:about="http://www.oneo.net/hadAddress">
+    <owl:ObjectProperty rdf:about="&toporaz;hadAddress">
         <rdfs:comment xml:lang="en">A location can be an identifiable geographic place (ISO 19112), but it can also be a non-geographic place such as a directory, row, or column. As such, there are numerous ways in which location can be expressed, such as by a coordinate, address, landmark, and so forth.</rdfs:comment>
-        <rdfs:domain rdf:resource="http://www.oneo.net/Site"/>
+        <rdfs:domain rdf:resource="&toporaz;Site"/>
         <rdfs:range rdf:resource="http://www.w3.org/ns/prov#Location"/>
     </owl:ObjectProperty>
     
@@ -58,295 +60,265 @@
 
     <!-- http://www.oneo.net/hasArchitectureType -->
 
-    <owl:ObjectProperty rdf:about="http://www.oneo.net/hasArchitectureType">
+    <owl:ObjectProperty rdf:about="&toporaz;hasArchitectureType">
         <rdfs:comment>The property relates a Building to a specific Architecture Type.</rdfs:comment>
-        <rdfs:range rdf:resource="http://www.oneo.net/ArchitectureType"/>
-        <rdfs:domain rdf:resource="http://www.oneo.net/Building"/>
+        <rdfs:range rdf:resource="&toporaz;ArchitectureType"/>
+        <rdfs:domain rdf:resource="&toporaz;Building"/>
     </owl:ObjectProperty>
     
 
 
     <!-- http://www.oneo.net/hasBuilding -->
 
-    <owl:ObjectProperty rdf:about="http://www.oneo.net/hasBuilding">
-        <rdfs:range rdf:resource="http://www.oneo.net/Building"/>
-        <rdfs:domain rdf:resource="http://www.oneo.net/BuildingGroup"/>
-        <rdfs:range rdf:resource="http://www.oneo.net/PublicSite"/>
+    <owl:ObjectProperty rdf:about="&toporaz;hasBuilding">
+        <rdfs:range rdf:resource="&toporaz;Building"/>
+        <rdfs:domain rdf:resource="&toporaz;BuildingGroup"/>
+        <rdfs:range rdf:resource="&toporaz;PublicSite"/>
     </owl:ObjectProperty>
     
 
 
-    <!-- http://www.oneo.net/hasBuildingSection -->
+    <!-- http://www.oneo.net/hasBuildingPart -->
 
-    <owl:ObjectProperty rdf:about="http://www.oneo.net/hasBuildingSection">
+    <owl:ObjectProperty rdf:about="&toporaz;hasBuildingPart">
         <rdf:type rdf:resource="&owl;InverseFunctionalProperty"/>
-        <rdfs:domain rdf:resource="http://www.oneo.net/Building"/>
-        <rdfs:range rdf:resource="http://www.oneo.net/BuildingSection"/>
-        <owl:inverseOf rdf:resource="http://www.oneo.net/belongsToBuilding"/>
+        <rdfs:domain rdf:resource="&toporaz;Building"/>
+        <rdfs:range rdf:resource="&toporaz;BuildingPart"/>
+        <owl:inverseOf rdf:resource="&toporaz;belongsToBuilding"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.oneo.net/hasBuildingPhase -->
+
+    <owl:ObjectProperty rdf:about="&toporaz;hasBuildingPhase">
+        <rdfs:domain rdf:resource="&toporaz;BuildingPart"/>
+        <rdfs:range rdf:resource="&toporaz;BuildingPhase"/>
     </owl:ObjectProperty>
     
 
 
     <!-- http://www.oneo.net/hasFunction -->
 
-    <owl:ObjectProperty rdf:about="http://www.oneo.net/hasFunction">
+    <owl:ObjectProperty rdf:about="&toporaz;hasFunction">
         <rdfs:comment xml:lang="en">This property relates a toporaz:Site with a specific toporaz:Function.
 There are additional subclasses of this property depending on the specific function of a specific Building, eg:  SacralFunction</rdfs:comment>
-        <rdfs:range rdf:resource="http://www.oneo.net/BuildingFunction"/>
-        <rdfs:domain rdf:resource="http://www.oneo.net/OutsideFurnishing"/>
-        <rdfs:domain rdf:resource="http://www.oneo.net/Site"/>
+        <rdfs:range rdf:resource="&toporaz;BuildingFunction"/>
+        <rdfs:domain rdf:resource="&toporaz;OutsideFurnishing"/>
+        <rdfs:domain rdf:resource="&toporaz;Site"/>
     </owl:ObjectProperty>
     
 
 
     <!-- http://www.oneo.net/hasFurnishing -->
 
-    <owl:ObjectProperty rdf:about="http://www.oneo.net/hasFurnishing">
-        <rdfs:range rdf:resource="http://www.oneo.net/Furnishing"/>
-        <rdfs:domain rdf:resource="http://www.oneo.net/PublicSite"/>
-        <rdfs:domain rdf:resource="http://www.oneo.net/Room"/>
+    <owl:ObjectProperty rdf:about="&toporaz;hasFurnishing">
+        <rdfs:range rdf:resource="&toporaz;Furnishing"/>
+        <rdfs:domain rdf:resource="&toporaz;PublicSite"/>
+        <rdfs:domain rdf:resource="&toporaz;Room"/>
     </owl:ObjectProperty>
     
 
 
     <!-- http://www.oneo.net/hasOutsideFurnishing -->
 
-    <owl:ObjectProperty rdf:about="http://www.oneo.net/hasOutsideFurnishing">
-        <rdfs:domain rdf:resource="http://www.oneo.net/Building"/>
-        <rdfs:range rdf:resource="http://www.oneo.net/OutsideFurnishing"/>
+    <owl:ObjectProperty rdf:about="&toporaz;hasOutsideFurnishing">
+        <rdfs:domain rdf:resource="&toporaz;Building"/>
+        <rdfs:range rdf:resource="&toporaz;OutsideFurnishing"/>
     </owl:ObjectProperty>
     
 
 
     <!-- http://www.oneo.net/hasOutsideFurnishingType -->
 
-    <owl:ObjectProperty rdf:about="http://www.oneo.net/hasOutsideFurnishingType">
+    <owl:ObjectProperty rdf:about="&toporaz;hasOutsideFurnishingType">
         <rdfs:comment>This property relates a Building to an OutsideFurnishing (Außengestaltung).</rdfs:comment>
-        <rdfs:domain rdf:resource="http://www.oneo.net/Building"/>
-        <rdfs:range rdf:resource="http://www.oneo.net/OutsideFurnishingType"/>
-        <rdfs:subPropertyOf rdf:resource="http://www.oneo.net/hasFurnishing"/>
+        <rdfs:domain rdf:resource="&toporaz;Building"/>
+        <rdfs:range rdf:resource="&toporaz;OutsideFurnishingType"/>
+        <rdfs:subPropertyOf rdf:resource="&toporaz;hasFurnishing"/>
     </owl:ObjectProperty>
     
 
 
     <!-- http://www.oneo.net/hasPublicSiteFunction -->
 
-    <owl:ObjectProperty rdf:about="http://www.oneo.net/hasPublicSiteFunction">
+    <owl:ObjectProperty rdf:about="&toporaz;hasPublicSiteFunction">
         <rdfs:comment xml:lang="en">The property relates a toporaz:PublicSite with a specific toporaz:Function subclassed under toporaz:PublicSiteFunction</rdfs:comment>
-        <rdfs:domain rdf:resource="http://www.oneo.net/PublicSite"/>
-        <rdfs:range rdf:resource="http://www.oneo.net/PublicSiteFunction"/>
-        <rdfs:subPropertyOf rdf:resource="http://www.oneo.net/hasFunction"/>
+        <rdfs:domain rdf:resource="&toporaz;PublicSite"/>
+        <rdfs:range rdf:resource="&toporaz;PublicSiteFunction"/>
+        <rdfs:subPropertyOf rdf:resource="&toporaz;hasFunction"/>
     </owl:ObjectProperty>
     
 
 
     <!-- http://www.oneo.net/hasReconstruction -->
 
-    <owl:ObjectProperty rdf:about="http://www.oneo.net/hasReconstruction">
+    <owl:ObjectProperty rdf:about="&toporaz;hasReconstruction">
         <rdfs:comment xml:lang="en">This property relates a specific Site with a toporaz:Reconstruction Activity</rdfs:comment>
-        <rdfs:range rdf:resource="http://www.oneo.net/Reconstruction"/>
-        <rdfs:domain rdf:resource="http://www.oneo.net/Site"/>
+        <rdfs:range rdf:resource="&toporaz;Reconstruction"/>
+        <rdfs:domain rdf:resource="&toporaz;Site"/>
     </owl:ObjectProperty>
     
 
 
     <!-- http://www.oneo.net/hasRoom -->
 
-    <owl:ObjectProperty rdf:about="http://www.oneo.net/hasRoom">
+    <owl:ObjectProperty rdf:about="&toporaz;hasRoom">
         <rdfs:comment>The property allows a Building to reference a number of contained Rooms</rdfs:comment>
-        <rdfs:domain rdf:resource="http://www.oneo.net/Building"/>
-        <rdfs:domain rdf:resource="http://www.oneo.net/BuildingSection"/>
-        <rdfs:range rdf:resource="http://www.oneo.net/Room"/>
-        <owl:inverseOf rdf:resource="http://www.oneo.net/roomBelongsTo"/>
+        <rdfs:domain rdf:resource="&toporaz;Building"/>
+        <rdfs:domain rdf:resource="&toporaz;BuildingPart"/>
+        <rdfs:range rdf:resource="&toporaz;Room"/>
+        <owl:inverseOf rdf:resource="&toporaz;roomBelongsTo"/>
+        <rdfs:domain rdf:resource="&toporaz;toporaz/Level"/>
     </owl:ObjectProperty>
     
 
 
     <!-- http://www.oneo.net/hasRoomElement -->
 
-    <owl:ObjectProperty rdf:about="http://www.oneo.net/hasRoomElement">
-        <rdfs:domain rdf:resource="http://www.oneo.net/Room"/>
-        <rdfs:range rdf:resource="http://www.oneo.net/RoomElement"/>
-        <owl:inverseOf rdf:resource="http://www.oneo.net/belongsToRoom"/>
+    <owl:ObjectProperty rdf:about="&toporaz;hasRoomElement">
+        <rdfs:domain rdf:resource="&toporaz;Room"/>
+        <rdfs:range rdf:resource="&toporaz;RoomElement"/>
+        <owl:inverseOf rdf:resource="&toporaz;belongsToRoom"/>
     </owl:ObjectProperty>
     
 
 
     <!-- http://www.oneo.net/hasRoomFunction -->
 
-    <owl:ObjectProperty rdf:about="http://www.oneo.net/hasRoomFunction">
+    <owl:ObjectProperty rdf:about="&toporaz;hasRoomFunction">
         <rdfs:comment xml:lang="en">Relates a room with a specific function. Normally a room inherits the function from the building it is contained in. In special cases, there are rooms that have a different functionality from their building.</rdfs:comment>
-        <rdfs:domain rdf:resource="http://www.oneo.net/Room"/>
-        <rdfs:range rdf:resource="http://www.oneo.net/RoomFunction"/>
-        <rdfs:subPropertyOf rdf:resource="http://www.oneo.net/hasFunction"/>
+        <rdfs:domain rdf:resource="&toporaz;Room"/>
+        <rdfs:range rdf:resource="&toporaz;RoomFunction"/>
+        <rdfs:subPropertyOf rdf:resource="&toporaz;hasFunction"/>
     </owl:ObjectProperty>
     
 
 
     <!-- http://www.oneo.net/hasSacralArchitectureType -->
 
-    <owl:ObjectProperty rdf:about="http://www.oneo.net/hasSacralArchitectureType">
-        <rdfs:range rdf:resource="http://www.oneo.net/SacralArchitecture"/>
-        <rdfs:domain rdf:resource="http://www.oneo.net/SacralBuilding"/>
-        <rdfs:subPropertyOf rdf:resource="http://www.oneo.net/hasArchitectureType"/>
+    <owl:ObjectProperty rdf:about="&toporaz;hasSacralArchitectureType">
+        <rdfs:range rdf:resource="&toporaz;SacralArchitecture"/>
+        <rdfs:domain rdf:resource="&toporaz;SacralBuilding"/>
+        <rdfs:subPropertyOf rdf:resource="&toporaz;hasArchitectureType"/>
     </owl:ObjectProperty>
     
 
 
     <!-- http://www.oneo.net/hasSacralFunction -->
 
-    <owl:ObjectProperty rdf:about="http://www.oneo.net/hasSacralFunction">
-        <rdfs:domain rdf:resource="http://www.oneo.net/SacralBuilding"/>
-        <rdfs:range rdf:resource="http://www.oneo.net/SacralFunction"/>
-        <rdfs:subPropertyOf rdf:resource="http://www.oneo.net/hasFunction"/>
+    <owl:ObjectProperty rdf:about="&toporaz;hasSacralFunction">
+        <rdfs:domain rdf:resource="&toporaz;SacralBuilding"/>
+        <rdfs:range rdf:resource="&toporaz;SacralFunction"/>
+        <rdfs:subPropertyOf rdf:resource="&toporaz;hasFunction"/>
     </owl:ObjectProperty>
     
 
 
     <!-- http://www.oneo.net/hasSacralRoom -->
 
-    <owl:ObjectProperty rdf:about="http://www.oneo.net/hasSacralRoom">
-        <rdfs:range rdf:resource="http://www.oneo.net/RoomSacralBuilding"/>
-        <rdfs:domain rdf:resource="http://www.oneo.net/SacralBuilding"/>
-        <rdfs:subPropertyOf rdf:resource="http://www.oneo.net/hasRoom"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.oneo.net/istAbgebildetAuf -->
-
-    <owl:ObjectProperty rdf:about="http://www.oneo.net/istAbgebildetAuf">
-        <rdfs:range rdf:resource="http://www.oneo.net/Furnishing"/>
-        <rdfs:subPropertyOf rdf:resource="http://www.oneo.net/personIs"/>
-        <rdfs:domain rdf:resource="http://www.w3.org/ns/prov#Person"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.oneo.net/istBegrabenIn -->
-
-    <owl:ObjectProperty rdf:about="http://www.oneo.net/istBegrabenIn">
-        <rdfs:range rdf:resource="http://www.oneo.net/OutsideFurnishing"/>
-        <rdfs:subPropertyOf rdf:resource="http://www.oneo.net/personIs"/>
-        <rdfs:domain rdf:resource="http://www.w3.org/ns/prov#Person"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.oneo.net/istBesitzerVon -->
-
-    <owl:ObjectProperty rdf:about="http://www.oneo.net/istBesitzerVon">
-        <rdfs:range rdf:resource="http://www.oneo.net/Building"/>
-        <rdfs:subPropertyOf rdf:resource="http://www.oneo.net/personIs"/>
-        <rdfs:domain rdf:resource="http://www.w3.org/ns/prov#Person"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.oneo.net/istBewohnerVon -->
-
-    <owl:ObjectProperty rdf:about="http://www.oneo.net/istBewohnerVon">
-        <rdfs:range rdf:resource="http://www.oneo.net/Building"/>
-        <rdfs:subPropertyOf rdf:resource="http://www.oneo.net/personIs"/>
-        <rdfs:domain rdf:resource="http://www.w3.org/ns/prov#Person"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.oneo.net/istEhegatteVon -->
-
-    <owl:ObjectProperty rdf:about="http://www.oneo.net/istEhegatteVon">
-        <rdfs:subPropertyOf rdf:resource="http://www.oneo.net/personIs"/>
-        <rdfs:range rdf:resource="http://www.w3.org/ns/prov#Person"/>
-        <rdfs:domain rdf:resource="http://www.w3.org/ns/prov#Person"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.oneo.net/istErwähntIn -->
-
-    <owl:ObjectProperty rdf:about="http://www.oneo.net/istErwähntIn">
-        <rdfs:range rdf:resource="http://www.oneo.net/Quelle"/>
-        <rdfs:subPropertyOf rdf:resource="http://www.oneo.net/personIs"/>
-        <rdfs:domain rdf:resource="http://www.w3.org/ns/prov#Person"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.oneo.net/istErzeugerVon -->
-
-    <owl:ObjectProperty rdf:about="http://www.oneo.net/istErzeugerVon">
-        <rdfs:range rdf:resource="http://www.oneo.net/Building"/>
-        <rdfs:range rdf:resource="http://www.oneo.net/Furnishing"/>
-        <rdfs:subPropertyOf rdf:resource="http://www.oneo.net/personIs"/>
-        <rdfs:domain rdf:resource="http://www.w3.org/ns/prov#Person"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.oneo.net/istStiffterVon -->
-
-    <owl:ObjectProperty rdf:about="http://www.oneo.net/istStiffterVon">
-        <rdfs:range rdf:resource="http://www.oneo.net/Furnishing"/>
-        <rdfs:subPropertyOf rdf:resource="http://www.oneo.net/personIs"/>
-        <rdfs:domain rdf:resource="http://www.w3.org/ns/prov#Person"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.oneo.net/istVerwandeltMit -->
-
-    <owl:ObjectProperty rdf:about="http://www.oneo.net/istVerwandeltMit">
-        <rdfs:subPropertyOf rdf:resource="http://www.oneo.net/personIs"/>
-        <rdfs:range rdf:resource="http://www.w3.org/ns/prov#Person"/>
-        <rdfs:domain rdf:resource="http://www.w3.org/ns/prov#Person"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.oneo.net/occupation -->
-
-    <owl:ObjectProperty rdf:about="http://www.oneo.net/occupation">
-        <rdfs:subPropertyOf rdf:resource="http://www.oneo.net/personIs"/>
-        <rdfs:range rdf:resource="http://www.w3.org/ns/prov#Organization"/>
-        <rdfs:domain rdf:resource="http://www.w3.org/ns/prov#Person"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.oneo.net/personIs -->
-
-    <owl:ObjectProperty rdf:about="http://www.oneo.net/personIs">
-        <rdfs:subPropertyOf rdf:resource="&owl;topObjectProperty"/>
+    <owl:ObjectProperty rdf:about="&toporaz;hasSacralRoom">
+        <rdfs:range rdf:resource="&toporaz;RoomSacralBuilding"/>
+        <rdfs:domain rdf:resource="&toporaz;SacralBuilding"/>
+        <rdfs:subPropertyOf rdf:resource="&toporaz;hasRoom"/>
     </owl:ObjectProperty>
     
 
 
     <!-- http://www.oneo.net/roomBelongsTo -->
 
-    <owl:ObjectProperty rdf:about="http://www.oneo.net/roomBelongsTo"/>
+    <owl:ObjectProperty rdf:about="&toporaz;roomBelongsTo"/>
     
 
 
     <!-- http://www.oneo.net/transformationFrom -->
 
-    <owl:ObjectProperty rdf:about="http://www.oneo.net/transformationFrom">
+    <owl:ObjectProperty rdf:about="&toporaz;transformationFrom">
         <rdfs:comment xml:lang="en">The property relates an entity transformed to an Activity to a new entity</rdfs:comment>
-        <rdfs:domain rdf:resource="http://www.oneo.net/Building"/>
-        <rdfs:range rdf:resource="http://www.oneo.net/Building"/>
-        <rdfs:range rdf:resource="http://www.oneo.net/Room"/>
-        <rdfs:domain rdf:resource="http://www.oneo.net/Room"/>
+        <rdfs:domain rdf:resource="&toporaz;Building"/>
+        <rdfs:range rdf:resource="&toporaz;Building"/>
+        <rdfs:range rdf:resource="&toporaz;Room"/>
+        <rdfs:domain rdf:resource="&toporaz;Room"/>
     </owl:ObjectProperty>
     
 
 
     <!-- http://www.oneo.net/transformationResultedIn -->
 
-    <owl:ObjectProperty rdf:about="http://www.oneo.net/transformationResultedIn">
-        <rdfs:range rdf:resource="http://www.oneo.net/Building"/>
-        <rdfs:domain rdf:resource="http://www.oneo.net/Building"/>
-        <rdfs:domain rdf:resource="http://www.oneo.net/Room"/>
-        <rdfs:range rdf:resource="http://www.oneo.net/Room"/>
+    <owl:ObjectProperty rdf:about="&toporaz;transformationResultedIn">
+        <rdfs:range rdf:resource="&toporaz;Building"/>
+        <rdfs:domain rdf:resource="&toporaz;Building"/>
+        <rdfs:domain rdf:resource="&toporaz;Room"/>
+        <rdfs:range rdf:resource="&toporaz;Room"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.oneo.net/toporaz/hasFacade -->
+
+    <owl:ObjectProperty rdf:about="&toporaz;toporaz/hasFacade">
+        <rdfs:domain rdf:resource="&toporaz;BuildingPart"/>
+        <rdfs:range rdf:resource="&toporaz;toporaz/Facade"/>
+        <owl:inverseOf rdf:resource="&toporaz;toporaz/isFacadeOf"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.oneo.net/toporaz/hasField -->
+
+    <owl:ObjectProperty rdf:about="&toporaz;toporaz/hasField">
+        <rdfs:range rdf:resource="&toporaz;toporaz/Field"/>
+        <rdfs:domain rdf:resource="&toporaz;toporaz/Parish"/>
+        <owl:inverseOf rdf:resource="&toporaz;toporaz/isFieldOf"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.oneo.net/toporaz/hasParcel -->
+
+    <owl:ObjectProperty rdf:about="&toporaz;toporaz/hasParcel">
+        <rdfs:domain rdf:resource="&toporaz;toporaz/Field"/>
+        <rdfs:range rdf:resource="&toporaz;toporaz/Parcel"/>
+        <owl:inverseOf rdf:resource="&toporaz;toporaz/isParcelOf"/>
+        <rdfs:subPropertyOf rdf:resource="&owl;topObjectProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.oneo.net/toporaz/hasParentParcel -->
+
+    <owl:ObjectProperty rdf:about="&toporaz;toporaz/hasParentParcel">
+        <rdfs:range rdf:resource="&toporaz;toporaz/Parcel"/>
+        <rdfs:domain rdf:resource="&toporaz;toporaz/Parcel"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.oneo.net/toporaz/isFacadeOf -->
+
+    <owl:ObjectProperty rdf:about="&toporaz;toporaz/isFacadeOf"/>
+    
+
+
+    <!-- http://www.oneo.net/toporaz/isFieldOf -->
+
+    <owl:ObjectProperty rdf:about="&toporaz;toporaz/isFieldOf"/>
+    
+
+
+    <!-- http://www.oneo.net/toporaz/isParcelOf -->
+
+    <owl:ObjectProperty rdf:about="&toporaz;toporaz/isParcelOf">
+        <rdfs:range rdf:resource="&toporaz;toporaz/Field"/>
+        <rdfs:domain rdf:resource="&toporaz;toporaz/Parcel"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.oneo.net/toporaz/mentionedIn -->
+
+    <owl:ObjectProperty rdf:about="&toporaz;toporaz/mentionedIn">
+        <rdfs:domain rdf:resource="http://www.w3.org/ns/prov#Agent"/>
     </owl:ObjectProperty>
     
 
@@ -364,7 +336,7 @@ There are additional subclasses of this property depending on the specific funct
 
     <!-- http://www.oneo.net/birthday -->
 
-    <owl:DatatypeProperty rdf:about="http://www.oneo.net/birthday">
+    <owl:DatatypeProperty rdf:about="&toporaz;birthday">
         <rdfs:range rdf:resource="&xsd;dateTime"/>
         <rdfs:domain rdf:resource="http://www.w3.org/ns/prov#Person"/>
     </owl:DatatypeProperty>
@@ -373,7 +345,7 @@ There are additional subclasses of this property depending on the specific funct
 
     <!-- http://www.oneo.net/death -->
 
-    <owl:DatatypeProperty rdf:about="http://www.oneo.net/death">
+    <owl:DatatypeProperty rdf:about="&toporaz;death">
         <rdfs:range rdf:resource="&xsd;dateTime"/>
         <rdfs:domain rdf:resource="http://www.w3.org/ns/prov#Person"/>
     </owl:DatatypeProperty>
@@ -382,7 +354,7 @@ There are additional subclasses of this property depending on the specific funct
 
     <!-- http://www.oneo.net/destroyedReference -->
 
-    <owl:DatatypeProperty rdf:about="http://www.oneo.net/destroyedReference">
+    <owl:DatatypeProperty rdf:about="&toporaz;destroyedReference">
         <rdfs:comment xml:lang="en">This property indicates the destroyed time of a specific Site. To be evaluated if this property should be removed in favor of an Activity subclass toporaz:Destroyed and a property toporaz:Destroyed</rdfs:comment>
         <rdfs:range rdf:resource="&xsd;dateTime"/>
         <rdfs:domain rdf:resource="http://www.w3.org/ns/prov#Entity"/>
@@ -392,17 +364,27 @@ There are additional subclasses of this property depending on the specific funct
 
     <!-- http://www.oneo.net/firstReference -->
 
-    <owl:DatatypeProperty rdf:about="http://www.oneo.net/firstReference">
+    <owl:DatatypeProperty rdf:about="&toporaz;firstReference">
         <rdfs:comment xml:lang="en">This property points in time to the first reference this specific site has been mentioned.</rdfs:comment>
-        <rdfs:domain rdf:resource="http://www.oneo.net/Site"/>
+        <rdfs:domain rdf:resource="&toporaz;Site"/>
         <rdfs:range rdf:resource="&xsd;dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.oneo.net/hasBeheizbarkeit -->
+
+    <owl:DatatypeProperty rdf:about="&toporaz;hasBeheizbarkeit">
+        <rdfs:comment xml:lang="de">Beheizbarkeit der Räume sollte als Attribut für die Bauforschung aufgenommen werden</rdfs:comment>
+        <rdfs:domain rdf:resource="&toporaz;Room"/>
+        <rdfs:range rdf:resource="&rdf;XMLLiteral"/>
     </owl:DatatypeProperty>
     
 
 
     <!-- http://www.oneo.net/hasFunction -->
 
-    <owl:DatatypeProperty rdf:about="http://www.oneo.net/hasFunction">
+    <owl:DatatypeProperty rdf:about="&toporaz;hasFunction">
         <rdfs:comment xml:lang="en">This property relates a toporaz:Site with a specific toporaz:Function.
 There are additional subclasses of this property depending on the specific function of a specific Building, eg:  SacralFunction</rdfs:comment>
         <rdfs:range rdf:resource="&xsd;string"/>
@@ -413,7 +395,7 @@ There are additional subclasses of this property depending on the specific funct
 
     <!-- http://www.oneo.net/hasIdentifier -->
 
-    <owl:DatatypeProperty rdf:about="http://www.oneo.net/hasIdentifier">
+    <owl:DatatypeProperty rdf:about="&toporaz;hasIdentifier">
         <rdfs:label xml:lang="en">hasIdentifier</rdfs:label>
         <rdfs:comment xml:lang="en">This property describes the naming or identification of any real world item by an dentifier. 
 The property may record the identifier that was assigned to an item in an Identifier Assignment activity.</rdfs:comment>
@@ -425,12 +407,292 @@ The property may record the identifier that was assigned to an item in an Identi
 
     <!-- http://www.oneo.net/hasName -->
 
-    <owl:DatatypeProperty rdf:about="http://www.oneo.net/hasName">
+    <owl:DatatypeProperty rdf:about="&toporaz;hasName">
         <rdfs:label xml:lang="en">hasName</rdfs:label>
         <rdfs:comment xml:lang="en">The property relates an Entity with a reference name. Although an Entity might have an identifier, or a separate Name, this is a reference-name, or a well known term. 
 In case of a modern building, this may be the actual name of the building, although in time this entity might have had different names.</rdfs:comment>
         <rdfs:range rdf:resource="&xsd;string"/>
         <rdfs:domain rdf:resource="http://www.w3.org/ns/prov#Entity"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.oneo.net/toporaz/LevelGround -->
+
+    <owl:DatatypeProperty rdf:about="&toporaz;toporaz/LevelGround">
+        <rdfs:label xml:lang="de">Bodenniveau</rdfs:label>
+        <rdfs:comment xml:lang="en">eg: 1,22 m ü. NHN</rdfs:comment>
+        <rdfs:domain rdf:resource="&toporaz;toporaz/Level"/>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.oneo.net/toporaz/LevelHeight -->
+
+    <owl:DatatypeProperty rdf:about="&toporaz;toporaz/LevelHeight">
+        <rdfs:label xml:lang="de">Ebenhöhe</rdfs:label>
+        <rdfs:comment xml:lang="en">height of the level from ground to ceiling – eg: 4,50m</rdfs:comment>
+        <rdfs:domain rdf:resource="&toporaz;toporaz/Level"/>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.oneo.net/toporaz/hasAssociationType -->
+
+    <owl:DatatypeProperty rdf:about="&toporaz;toporaz/hasAssociationType">
+        <rdfs:domain rdf:resource="&toporaz;toporaz/AssociationActivity"/>
+        <rdfs:range>
+            <rdfs:Datatype>
+                <owl:oneOf>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&rdf;List"/>
+                        <rdf:first>Marriage</rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&rdf;List"/>
+                                <rdf:first>Relation</rdf:first>
+                                <rdf:rest rdf:resource="&rdf;nil"/>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </owl:oneOf>
+            </rdfs:Datatype>
+        </rdfs:range>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.oneo.net/toporaz/hasConservationStatus -->
+
+    <owl:DatatypeProperty rdf:about="&toporaz;toporaz/hasConservationStatus">
+        <rdfs:comment xml:lang="en">ConservationStatus (Erhaltungszustand) [T] – only 3 possibilities seem to be useful: complete (vollständig), ruined (ruinös), demolished (zerstört)</rdfs:comment>
+        <rdfs:domain rdf:resource="&toporaz;Site"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.oneo.net/toporaz/hasDoor -->
+
+    <owl:DatatypeProperty rdf:about="&toporaz;toporaz/hasDoor">
+        <rdfs:label xml:lang="en">hatTüröffnungen</rdfs:label>
+        <rdfs:comment xml:lang="en">just the number, it can change over time – eg: 2</rdfs:comment>
+        <rdfs:domain rdf:resource="&toporaz;RoomElement"/>
+        <rdfs:range rdf:resource="&xsd;integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.oneo.net/toporaz/hasFacadeAxes -->
+
+    <owl:DatatypeProperty rdf:about="&toporaz;toporaz/hasFacadeAxes">
+        <rdfs:comment xml:lang="en">regular number, in the picture its eg: 3</rdfs:comment>
+        <rdfs:domain rdf:resource="&toporaz;toporaz/Facade"/>
+        <rdfs:range rdf:resource="&xsd;integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.oneo.net/toporaz/hasFacadeDirection -->
+
+    <owl:DatatypeProperty rdf:about="&toporaz;toporaz/hasFacadeDirection">
+        <rdfs:comment xml:lang="en">orientation of the facade in geographic cardinal directions  - eg:  188°</rdfs:comment>
+        <rdfs:domain rdf:resource="&toporaz;toporaz/Facade"/>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.oneo.net/toporaz/hasFacadeElements -->
+
+    <owl:DatatypeProperty rdf:about="&toporaz;toporaz/hasFacadeElements">
+        <rdfs:comment xml:lang="en">There are lots of possibilities eg: risalit(Risalit), oriel (Erker), bay window (Auslucht)</rdfs:comment>
+        <rdfs:domain rdf:resource="&toporaz;toporaz/Facade"/>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.oneo.net/toporaz/hasLevelLocation -->
+
+    <owl:DatatypeProperty rdf:about="&toporaz;toporaz/hasLevelLocation">
+        <rdfs:label xml:lang="de">Ebenenlage</rdfs:label>
+        <rdfs:comment xml:lang="en">to distinguish between basement and upper floors, or semi-basement which is both, so its either one or both – eg: upper floor (Obergeschoss) &amp; basement (Untergeschoss)</rdfs:comment>
+        <rdfs:domain rdf:resource="&toporaz;toporaz/Level"/>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.oneo.net/toporaz/hasLevelNumber -->
+
+    <owl:DatatypeProperty rdf:about="&toporaz;toporaz/hasLevelNumber">
+        <rdfs:label xml:lang="de">Ebenennummer</rdfs:label>
+        <rdfs:comment xml:lang="en">to see how many floors the building has – eg: 5 upper floor, 2 basement</rdfs:comment>
+        <rdfs:domain rdf:resource="&toporaz;toporaz/Level"/>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.oneo.net/toporaz/hasMaterial -->
+
+    <owl:DatatypeProperty rdf:about="&toporaz;toporaz/hasMaterial">
+        <rdfs:comment xml:lang="en">plaster (Putz), brick (Ziegel), wood (Holz), concrete (Beton), stone (Naturstein), sandstone (Sandstein)</rdfs:comment>
+        <rdfs:domain rdf:resource="&toporaz;RoomElement"/>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.oneo.net/toporaz/hasRelationBuildingAssociation -->
+
+    <owl:DatatypeProperty rdf:about="&toporaz;toporaz/hasRelationBuildingAssociation">
+        <rdfs:domain rdf:resource="&toporaz;toporaz/RelationBuildingAgent"/>
+        <rdfs:range>
+            <rdfs:Datatype>
+                <owl:oneOf>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&rdf;List"/>
+                        <rdf:first>Buried</rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&rdf;List"/>
+                                <rdf:first>Depicted</rdf:first>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="&rdf;List"/>
+                                        <rdf:first>Founder</rdf:first>
+                                        <rdf:rest>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="&rdf;List"/>
+                                                <rdf:first>Inhabitans</rdf:first>
+                                                <rdf:rest>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="&rdf;List"/>
+                                                        <rdf:first>Owner</rdf:first>
+                                                        <rdf:rest>
+                                                            <rdf:Description>
+                                                                <rdf:type rdf:resource="&rdf;List"/>
+                                                                <rdf:first>Producer</rdf:first>
+                                                                <rdf:rest>
+                                                                    <rdf:Description>
+                                                                        <rdf:type rdf:resource="&rdf;List"/>
+                                                                        <rdf:first>User</rdf:first>
+                                                                        <rdf:rest rdf:resource="&rdf;nil"/>
+                                                                    </rdf:Description>
+                                                                </rdf:rest>
+                                                            </rdf:Description>
+                                                        </rdf:rest>
+                                                    </rdf:Description>
+                                                </rdf:rest>
+                                            </rdf:Description>
+                                        </rdf:rest>
+                                    </rdf:Description>
+                                </rdf:rest>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </owl:oneOf>
+            </rdfs:Datatype>
+        </rdfs:range>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.oneo.net/toporaz/hasRoofColour -->
+
+    <owl:DatatypeProperty rdf:about="&toporaz;toporaz/hasRoofColour">
+        <rdfs:label xml:lang="de">DachFarbe</rdfs:label>
+        <rdfs:comment xml:lang="en"></rdfs:comment>
+        <rdfs:domain rdf:resource="&toporaz;toporaz/Roof"/>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.oneo.net/toporaz/hasRoofDirection -->
+
+    <owl:DatatypeProperty rdf:about="&toporaz;toporaz/hasRoofDirection">
+        <rdfs:label xml:lang="de">Dachausrichtung</rdfs:label>
+        <rdfs:comment xml:lang="en">orientation of the roof in geographic cardinal directions (see pic), there can be several directions for one roof  - eg:  188° &amp; 345°</rdfs:comment>
+        <rdfs:domain rdf:resource="&toporaz;toporaz/Roof"/>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.oneo.net/toporaz/hasRoofElement -->
+
+    <owl:DatatypeProperty rdf:about="&toporaz;toporaz/hasRoofElement">
+        <rdfs:label xml:lang="de">Dachelemente</rdfs:label>
+        <rdfs:comment xml:lang="en">fixed set, incomplete: fleche (Dachreiter), dormer (Dachgaube)</rdfs:comment>
+        <rdfs:domain rdf:resource="&toporaz;toporaz/Roof"/>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.oneo.net/toporaz/hasRoofMaterial -->
+
+    <owl:DatatypeProperty rdf:about="&toporaz;toporaz/hasRoofMaterial">
+        <rdfs:label xml:lang="de">Dachmaterial</rdfs:label>
+        <rdfs:comment xml:lang="en">also fixed set that is incomplete: slate (Schiefer), clay (Ton), reeds (Reet) ....</rdfs:comment>
+        <rdfs:domain rdf:resource="&toporaz;toporaz/Roof"/>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.oneo.net/toporaz/hasRoofShape -->
+
+    <owl:DatatypeProperty rdf:about="&toporaz;toporaz/hasRoofShape">
+        <rdfs:label xml:lang="de">Dachform</rdfs:label>
+        <rdfs:comment xml:lang="en">fixed set of terms but this might not be complete: flat (Flachdach), skillion (Pultdach), gabled (Satteldach), half-hipped (Krüppelwalmdach), hipped (Walmdach), pyramidal (Zeltdach), gambrel (Mansard-Giebeldach), mansard (Mansard-Walmdach), dome (Kuppeldach), onion (Zwiebelhelm), round (Tonnendach)</rdfs:comment>
+        <rdfs:domain rdf:resource="&toporaz;toporaz/Roof"/>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.oneo.net/toporaz/hasRoomBezeichnung -->
+
+    <owl:DatatypeProperty rdf:about="&toporaz;toporaz/hasRoomBezeichnung">
+        <rdfs:comment xml:lang="en">not necessarily filled in. Could be free text or a sort of numbering. - eg: Bernsteinzimmer, R104</rdfs:comment>
+        <rdfs:domain rdf:resource="&toporaz;Room"/>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.oneo.net/toporaz/hasRoomElementDirection -->
+
+    <owl:DatatypeProperty rdf:about="&toporaz;toporaz/hasRoomElementDirection">
+        <rdfs:label xml:lang="de">Raumelementausrichtung</rdfs:label>
+        <rdfs:comment xml:lang="en">only for walls, to distinguish - eg:  188°</rdfs:comment>
+        <rdfs:domain rdf:resource="&toporaz;RoomElement"/>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.oneo.net/toporaz/hasRoomElementType -->
+
+    <owl:DatatypeProperty rdf:about="&toporaz;toporaz/hasRoomElementType">
+        <rdfs:label xml:lang="de">Raumelementtyp</rdfs:label>
+        <rdfs:comment xml:lang="en">can be: ceiling (Decke) (1), wall (Wand) (2), floor (Boden) (3)</rdfs:comment>
+        <rdfs:domain rdf:resource="&toporaz;RoomElement"/>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.oneo.net/toporaz/hasWindow -->
+
+    <owl:DatatypeProperty rdf:about="&toporaz;toporaz/hasWindow">
+        <rdfs:domain rdf:resource="&toporaz;RoomElement"/>
+        <rdfs:range rdf:resource="&xsd;integer"/>
     </owl:DatatypeProperty>
     
 
@@ -448,15 +710,15 @@ In case of a modern building, this may be the actual name of the building, altho
 
     <!-- http://www.oneo.net/Altäre_und_Altarschmuck -->
 
-    <owl:Class rdf:about="http://www.oneo.net/Altäre_und_Altarschmuck">
-        <rdfs:subClassOf rdf:resource="http://www.oneo.net/FurnishingFunction"/>
+    <owl:Class rdf:about="&toporaz;Altäre_und_Altarschmuck">
+        <rdfs:subClassOf rdf:resource="&toporaz;FurnishingFunction"/>
     </owl:Class>
     
 
 
     <!-- http://www.oneo.net/ArchitectureType -->
 
-    <owl:Class rdf:about="http://www.oneo.net/ArchitectureType">
+    <owl:Class rdf:about="&toporaz;ArchitectureType">
         <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/prov#Entity"/>
     </owl:Class>
     
@@ -464,16 +726,16 @@ In case of a modern building, this may be the actual name of the building, altho
 
     <!-- http://www.oneo.net/Banklaken -->
 
-    <owl:Class rdf:about="http://www.oneo.net/Banklaken">
-        <rdfs:subClassOf rdf:resource="http://www.oneo.net/Textilen"/>
+    <owl:Class rdf:about="&toporaz;Banklaken">
+        <rdfs:subClassOf rdf:resource="&toporaz;Textilen"/>
     </owl:Class>
     
 
 
     <!-- http://www.oneo.net/Building -->
 
-    <owl:Class rdf:about="http://www.oneo.net/Building">
-        <rdfs:subClassOf rdf:resource="http://www.oneo.net/Site"/>
+    <owl:Class rdf:about="&toporaz;Building">
+        <rdfs:subClassOf rdf:resource="&toporaz;Site"/>
         <rdfs:comment xml:lang="en">A specific entity of interest for the Toporaz Project</rdfs:comment>
     </owl:Class>
     
@@ -481,84 +743,86 @@ In case of a modern building, this may be the actual name of the building, altho
 
     <!-- http://www.oneo.net/BuildingFunction -->
 
-    <owl:Class rdf:about="http://www.oneo.net/BuildingFunction">
-        <rdfs:subClassOf rdf:resource="http://www.oneo.net/Function"/>
+    <owl:Class rdf:about="&toporaz;BuildingFunction">
+        <rdfs:subClassOf rdf:resource="&toporaz;Function"/>
     </owl:Class>
     
 
 
     <!-- http://www.oneo.net/BuildingGroup -->
 
-    <owl:Class rdf:about="http://www.oneo.net/BuildingGroup">
-        <rdfs:subClassOf rdf:resource="http://www.oneo.net/Site"/>
+    <owl:Class rdf:about="&toporaz;BuildingGroup">
+        <rdfs:subClassOf rdf:resource="&toporaz;Site"/>
         <rdfs:comment xml:lang="en">Apparently modelled as BIM-Ebenmodellen in Architectur</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.oneo.net/BuildingPart -->
+
+    <owl:Class rdf:about="&toporaz;BuildingPart">
+        <rdfs:label xml:lang="de">Gebäudeteil</rdfs:label>
+        <rdfs:label xml:lang="en">BuildingPart</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&toporaz;Site"/>
+        <rdfs:comment xml:lang="en">This entity denotes a specific region within a building.</rdfs:comment>
     </owl:Class>
     
 
 
     <!-- http://www.oneo.net/BuildingPhase -->
 
-    <owl:Class rdf:about="http://www.oneo.net/BuildingPhase">
-        <rdfs:subClassOf rdf:resource="http://www.oneo.net/Period"/>
+    <owl:Class rdf:about="&toporaz;BuildingPhase">
+        <rdfs:subClassOf rdf:resource="&toporaz;Period"/>
         <rdfs:comment xml:lang="en">BuildingPhases are distinct time periods characterized by specific constructions</rdfs:comment>
-    </owl:Class>
-    
-
-
-    <!-- http://www.oneo.net/BuildingSection -->
-
-    <owl:Class rdf:about="http://www.oneo.net/BuildingSection">
-        <rdfs:subClassOf rdf:resource="http://www.oneo.net/Site"/>
-        <rdfs:comment xml:lang="en">This entity denotes a specific region within a building.</rdfs:comment>
     </owl:Class>
     
 
 
     <!-- http://www.oneo.net/BuildingTime -->
 
-    <owl:Class rdf:about="http://www.oneo.net/BuildingTime">
-        <rdfs:subClassOf rdf:resource="http://www.oneo.net/Period"/>
+    <owl:Class rdf:about="&toporaz;BuildingTime">
+        <rdfs:subClassOf rdf:resource="&toporaz;Period"/>
     </owl:Class>
     
 
 
     <!-- http://www.oneo.net/Dachgestaltung -->
 
-    <owl:Class rdf:about="http://www.oneo.net/Dachgestaltung">
-        <rdfs:subClassOf rdf:resource="http://www.oneo.net/Kuenstlicher_Medium"/>
-        <rdfs:subClassOf rdf:resource="http://www.oneo.net/OutsideFurnishing"/>
+    <owl:Class rdf:about="&toporaz;Dachgestaltung">
+        <rdfs:subClassOf rdf:resource="&toporaz;Kuenstlicher_Medium"/>
+        <rdfs:subClassOf rdf:resource="&toporaz;OutsideFurnishing"/>
     </owl:Class>
     
 
 
     <!-- http://www.oneo.net/Epitaphien -->
 
-    <owl:Class rdf:about="http://www.oneo.net/Epitaphien">
-        <rdfs:subClassOf rdf:resource="http://www.oneo.net/FurnishingFunction"/>
+    <owl:Class rdf:about="&toporaz;Epitaphien">
+        <rdfs:subClassOf rdf:resource="&toporaz;FurnishingFunction"/>
     </owl:Class>
     
 
 
     <!-- http://www.oneo.net/Farbfassung -->
 
-    <owl:Class rdf:about="http://www.oneo.net/Farbfassung">
-        <rdfs:subClassOf rdf:resource="http://www.oneo.net/Wandmalereien"/>
+    <owl:Class rdf:about="&toporaz;Farbfassung">
+        <rdfs:subClassOf rdf:resource="&toporaz;Wandmalereien"/>
     </owl:Class>
     
 
 
     <!-- http://www.oneo.net/Flächenfassung -->
 
-    <owl:Class rdf:about="http://www.oneo.net/Flächenfassung">
-        <rdfs:subClassOf rdf:resource="http://www.oneo.net/Kuenstlicher_Medium"/>
-        <rdfs:subClassOf rdf:resource="http://www.oneo.net/OutsideFurnishing"/>
+    <owl:Class rdf:about="&toporaz;Flächenfassung">
+        <rdfs:subClassOf rdf:resource="&toporaz;Kuenstlicher_Medium"/>
+        <rdfs:subClassOf rdf:resource="&toporaz;OutsideFurnishing"/>
     </owl:Class>
     
 
 
     <!-- http://www.oneo.net/Function -->
 
-    <owl:Class rdf:about="http://www.oneo.net/Function">
+    <owl:Class rdf:about="&toporaz;Function">
         <rdfs:comment xml:lang="en">Function is a descriptive entity pointing to the functionality of a certain entity.</rdfs:comment>
     </owl:Class>
     
@@ -566,15 +830,15 @@ In case of a modern building, this may be the actual name of the building, altho
 
     <!-- http://www.oneo.net/Funktion -->
 
-    <owl:Class rdf:about="http://www.oneo.net/Funktion">
-        <rdfs:subClassOf rdf:resource="http://www.oneo.net/Furnishing"/>
+    <owl:Class rdf:about="&toporaz;Funktion">
+        <rdfs:subClassOf rdf:resource="&toporaz;Furnishing"/>
     </owl:Class>
     
 
 
     <!-- http://www.oneo.net/Furnishing -->
 
-    <owl:Class rdf:about="http://www.oneo.net/Furnishing">
+    <owl:Class rdf:about="&toporaz;Furnishing">
         <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/prov#Entity"/>
     </owl:Class>
     
@@ -582,15 +846,15 @@ In case of a modern building, this may be the actual name of the building, altho
 
     <!-- http://www.oneo.net/FurnishingFunction -->
 
-    <owl:Class rdf:about="http://www.oneo.net/FurnishingFunction">
-        <rdfs:subClassOf rdf:resource="http://www.oneo.net/Function"/>
+    <owl:Class rdf:about="&toporaz;FurnishingFunction">
+        <rdfs:subClassOf rdf:resource="&toporaz;Function"/>
     </owl:Class>
     
 
 
     <!-- http://www.oneo.net/FurnishingType -->
 
-    <owl:Class rdf:about="http://www.oneo.net/FurnishingType">
+    <owl:Class rdf:about="&toporaz;FurnishingType">
         <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/prov#Entity"/>
     </owl:Class>
     
@@ -598,125 +862,125 @@ In case of a modern building, this may be the actual name of the building, altho
 
     <!-- http://www.oneo.net/Gemälde -->
 
-    <owl:Class rdf:about="http://www.oneo.net/Gemälde">
-        <rdfs:subClassOf rdf:resource="http://www.oneo.net/Kuenstlicher_Medium"/>
+    <owl:Class rdf:about="&toporaz;Gemälde">
+        <rdfs:subClassOf rdf:resource="&toporaz;Kuenstlicher_Medium"/>
     </owl:Class>
     
 
 
     <!-- http://www.oneo.net/Glasmalereien -->
 
-    <owl:Class rdf:about="http://www.oneo.net/Glasmalereien">
-        <rdfs:subClassOf rdf:resource="http://www.oneo.net/Kuenstlicher_Medium"/>
+    <owl:Class rdf:about="&toporaz;Glasmalereien">
+        <rdfs:subClassOf rdf:resource="&toporaz;Kuenstlicher_Medium"/>
     </owl:Class>
     
 
 
     <!-- http://www.oneo.net/Grabmäler -->
 
-    <owl:Class rdf:about="http://www.oneo.net/Grabmäler">
-        <rdfs:subClassOf rdf:resource="http://www.oneo.net/FurnishingFunction"/>
+    <owl:Class rdf:about="&toporaz;Grabmäler">
+        <rdfs:subClassOf rdf:resource="&toporaz;FurnishingFunction"/>
     </owl:Class>
     
 
 
     <!-- http://www.oneo.net/Holz -->
 
-    <owl:Class rdf:about="http://www.oneo.net/Holz">
-        <rdfs:subClassOf rdf:resource="http://www.oneo.net/Wandmalereien"/>
+    <owl:Class rdf:about="&toporaz;Holz">
+        <rdfs:subClassOf rdf:resource="&toporaz;Wandmalereien"/>
     </owl:Class>
     
 
 
     <!-- http://www.oneo.net/Kamin -->
 
-    <owl:Class rdf:about="http://www.oneo.net/Kamin">
-        <rdfs:subClassOf rdf:resource="http://www.oneo.net/Kuenstlicher_Medium"/>
+    <owl:Class rdf:about="&toporaz;Kamin">
+        <rdfs:subClassOf rdf:resource="&toporaz;Kuenstlicher_Medium"/>
     </owl:Class>
     
 
 
     <!-- http://www.oneo.net/Kirchenschatz -->
 
-    <owl:Class rdf:about="http://www.oneo.net/Kirchenschatz">
-        <rdfs:subClassOf rdf:resource="http://www.oneo.net/FurnishingFunction"/>
+    <owl:Class rdf:about="&toporaz;Kirchenschatz">
+        <rdfs:subClassOf rdf:resource="&toporaz;FurnishingFunction"/>
     </owl:Class>
     
 
 
     <!-- http://www.oneo.net/Kissen -->
 
-    <owl:Class rdf:about="http://www.oneo.net/Kissen">
-        <rdfs:subClassOf rdf:resource="http://www.oneo.net/Textilen"/>
+    <owl:Class rdf:about="&toporaz;Kissen">
+        <rdfs:subClassOf rdf:resource="&toporaz;Textilen"/>
     </owl:Class>
     
 
 
     <!-- http://www.oneo.net/Kuenstlicher_Medium -->
 
-    <owl:Class rdf:about="http://www.oneo.net/Kuenstlicher_Medium">
-        <rdfs:subClassOf rdf:resource="http://www.oneo.net/Furnishing"/>
+    <owl:Class rdf:about="&toporaz;Kuenstlicher_Medium">
+        <rdfs:subClassOf rdf:resource="&toporaz;Furnishing"/>
     </owl:Class>
     
 
 
     <!-- http://www.oneo.net/Liturgische_Gewänder -->
 
-    <owl:Class rdf:about="http://www.oneo.net/Liturgische_Gewänder">
-        <rdfs:subClassOf rdf:resource="http://www.oneo.net/Textilen"/>
+    <owl:Class rdf:about="&toporaz;Liturgische_Gewänder">
+        <rdfs:subClassOf rdf:resource="&toporaz;Textilen"/>
     </owl:Class>
     
 
 
     <!-- http://www.oneo.net/Möbel -->
 
-    <owl:Class rdf:about="http://www.oneo.net/Möbel">
-        <rdfs:subClassOf rdf:resource="http://www.oneo.net/Kuenstlicher_Medium"/>
+    <owl:Class rdf:about="&toporaz;Möbel">
+        <rdfs:subClassOf rdf:resource="&toporaz;Kuenstlicher_Medium"/>
     </owl:Class>
     
 
 
     <!-- http://www.oneo.net/OutsideFurnishing -->
 
-    <owl:Class rdf:about="http://www.oneo.net/OutsideFurnishing">
-        <rdfs:subClassOf rdf:resource="http://www.oneo.net/Furnishing"/>
+    <owl:Class rdf:about="&toporaz;OutsideFurnishing">
+        <rdfs:subClassOf rdf:resource="&toporaz;Furnishing"/>
     </owl:Class>
     
 
 
     <!-- http://www.oneo.net/OutsideFurnishingType -->
 
-    <owl:Class rdf:about="http://www.oneo.net/OutsideFurnishingType">
-        <rdfs:subClassOf rdf:resource="http://www.oneo.net/FurnishingType"/>
+    <owl:Class rdf:about="&toporaz;OutsideFurnishingType">
+        <rdfs:subClassOf rdf:resource="&toporaz;FurnishingType"/>
     </owl:Class>
     
 
 
     <!-- http://www.oneo.net/Period -->
 
-    <owl:Class rdf:about="http://www.oneo.net/Period"/>
+    <owl:Class rdf:about="&toporaz;Period"/>
     
 
 
     <!-- http://www.oneo.net/PublicSite -->
 
-    <owl:Class rdf:about="http://www.oneo.net/PublicSite">
-        <rdfs:subClassOf rdf:resource="http://www.oneo.net/Site"/>
+    <owl:Class rdf:about="&toporaz;PublicSite">
+        <rdfs:subClassOf rdf:resource="&toporaz;Site"/>
     </owl:Class>
     
 
 
     <!-- http://www.oneo.net/PublicSiteFunction -->
 
-    <owl:Class rdf:about="http://www.oneo.net/PublicSiteFunction">
-        <rdfs:subClassOf rdf:resource="http://www.oneo.net/BuildingFunction"/>
+    <owl:Class rdf:about="&toporaz;PublicSiteFunction">
+        <rdfs:subClassOf rdf:resource="&toporaz;BuildingFunction"/>
     </owl:Class>
     
 
 
     <!-- http://www.oneo.net/Quelle -->
 
-    <owl:Class rdf:about="http://www.oneo.net/Quelle">
+    <owl:Class rdf:about="&toporaz;Quelle">
         <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/prov#Entity"/>
     </owl:Class>
     
@@ -724,7 +988,7 @@ In case of a modern building, this may be the actual name of the building, altho
 
     <!-- http://www.oneo.net/Reconstruction -->
 
-    <owl:Class rdf:about="http://www.oneo.net/Reconstruction">
+    <owl:Class rdf:about="&toporaz;Reconstruction">
         <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/prov#Activity"/>
     </owl:Class>
     
@@ -732,7 +996,7 @@ In case of a modern building, this may be the actual name of the building, altho
 
     <!-- http://www.oneo.net/Room -->
 
-    <owl:Class rdf:about="http://www.oneo.net/Room">
+    <owl:Class rdf:about="&toporaz;Room">
         <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/prov#Entity"/>
     </owl:Class>
     
@@ -740,7 +1004,7 @@ In case of a modern building, this may be the actual name of the building, altho
 
     <!-- http://www.oneo.net/RoomElement -->
 
-    <owl:Class rdf:about="http://www.oneo.net/RoomElement">
+    <owl:Class rdf:about="&toporaz;RoomElement">
         <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/prov#Entity"/>
         <rdfs:comment xml:lang="en">This entity points to a specific section within a room. This might be a wall, a specific region etc</rdfs:comment>
     </owl:Class>
@@ -749,55 +1013,55 @@ In case of a modern building, this may be the actual name of the building, altho
 
     <!-- http://www.oneo.net/RoomFunction -->
 
-    <owl:Class rdf:about="http://www.oneo.net/RoomFunction">
-        <rdfs:subClassOf rdf:resource="http://www.oneo.net/Function"/>
+    <owl:Class rdf:about="&toporaz;RoomFunction">
+        <rdfs:subClassOf rdf:resource="&toporaz;Function"/>
     </owl:Class>
     
 
 
     <!-- http://www.oneo.net/RoomSacralBuilding -->
 
-    <owl:Class rdf:about="http://www.oneo.net/RoomSacralBuilding">
-        <rdfs:subClassOf rdf:resource="http://www.oneo.net/Room"/>
+    <owl:Class rdf:about="&toporaz;RoomSacralBuilding">
+        <rdfs:subClassOf rdf:resource="&toporaz;Room"/>
     </owl:Class>
     
 
 
     <!-- http://www.oneo.net/SacralArchitecture -->
 
-    <owl:Class rdf:about="http://www.oneo.net/SacralArchitecture">
-        <rdfs:subClassOf rdf:resource="http://www.oneo.net/ArchitectureType"/>
+    <owl:Class rdf:about="&toporaz;SacralArchitecture">
+        <rdfs:subClassOf rdf:resource="&toporaz;ArchitectureType"/>
     </owl:Class>
     
 
 
     <!-- http://www.oneo.net/SacralBuilding -->
 
-    <owl:Class rdf:about="http://www.oneo.net/SacralBuilding">
-        <rdfs:subClassOf rdf:resource="http://www.oneo.net/Building"/>
+    <owl:Class rdf:about="&toporaz;SacralBuilding">
+        <rdfs:subClassOf rdf:resource="&toporaz;Building"/>
     </owl:Class>
     
 
 
     <!-- http://www.oneo.net/SacralFunction -->
 
-    <owl:Class rdf:about="http://www.oneo.net/SacralFunction">
-        <rdfs:subClassOf rdf:resource="http://www.oneo.net/BuildingFunction"/>
+    <owl:Class rdf:about="&toporaz;SacralFunction">
+        <rdfs:subClassOf rdf:resource="&toporaz;BuildingFunction"/>
     </owl:Class>
     
 
 
     <!-- http://www.oneo.net/SacralRoomFunction -->
 
-    <owl:Class rdf:about="http://www.oneo.net/SacralRoomFunction">
-        <rdfs:subClassOf rdf:resource="http://www.oneo.net/RoomFunction"/>
+    <owl:Class rdf:about="&toporaz;SacralRoomFunction">
+        <rdfs:subClassOf rdf:resource="&toporaz;RoomFunction"/>
     </owl:Class>
     
 
 
     <!-- http://www.oneo.net/Site -->
 
-    <owl:Class rdf:about="http://www.oneo.net/Site">
+    <owl:Class rdf:about="&toporaz;Site">
         <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/prov#Entity"/>
         <rdfs:comment xml:lang="en">A site is a geographical positioned entity. As a prov:Entity already provides a property relating it to a georeference, there is no additional property added for this class, beside the logical representation of it.</rdfs:comment>
     </owl:Class>
@@ -806,41 +1070,41 @@ In case of a modern building, this may be the actual name of the building, altho
 
     <!-- http://www.oneo.net/Skulpturen -->
 
-    <owl:Class rdf:about="http://www.oneo.net/Skulpturen">
-        <rdfs:subClassOf rdf:resource="http://www.oneo.net/Kuenstlicher_Medium"/>
-        <rdfs:subClassOf rdf:resource="http://www.oneo.net/OutsideFurnishingType"/>
+    <owl:Class rdf:about="&toporaz;Skulpturen">
+        <rdfs:subClassOf rdf:resource="&toporaz;Kuenstlicher_Medium"/>
+        <rdfs:subClassOf rdf:resource="&toporaz;OutsideFurnishingType"/>
     </owl:Class>
     
 
 
     <!-- http://www.oneo.net/Stein -->
 
-    <owl:Class rdf:about="http://www.oneo.net/Stein">
-        <rdfs:subClassOf rdf:resource="http://www.oneo.net/Wandmalereien"/>
+    <owl:Class rdf:about="&toporaz;Stein">
+        <rdfs:subClassOf rdf:resource="&toporaz;Wandmalereien"/>
     </owl:Class>
     
 
 
     <!-- http://www.oneo.net/Tapete -->
 
-    <owl:Class rdf:about="http://www.oneo.net/Tapete">
-        <rdfs:subClassOf rdf:resource="http://www.oneo.net/Wandmalereien"/>
+    <owl:Class rdf:about="&toporaz;Tapete">
+        <rdfs:subClassOf rdf:resource="&toporaz;Wandmalereien"/>
     </owl:Class>
     
 
 
     <!-- http://www.oneo.net/Textilen -->
 
-    <owl:Class rdf:about="http://www.oneo.net/Textilen">
-        <rdfs:subClassOf rdf:resource="http://www.oneo.net/Kuenstlicher_Medium"/>
+    <owl:Class rdf:about="&toporaz;Textilen">
+        <rdfs:subClassOf rdf:resource="&toporaz;Kuenstlicher_Medium"/>
     </owl:Class>
     
 
 
     <!-- http://www.oneo.net/Transformation -->
 
-    <owl:Class rdf:about="http://www.oneo.net/Transformation">
-        <rdfs:subClassOf rdf:resource="http://www.oneo.net/Reconstruction"/>
+    <owl:Class rdf:about="&toporaz;Transformation">
+        <rdfs:subClassOf rdf:resource="&toporaz;Reconstruction"/>
         <rdfs:comment xml:lang="en">A Transformation is a Reconstruction activity that invokes a change in the building of interest from a specific function or architecture type to a new one. This will be referred to as a new building</rdfs:comment>
     </owl:Class>
     
@@ -848,17 +1112,93 @@ In case of a modern building, this may be the actual name of the building, altho
 
     <!-- http://www.oneo.net/Wandbehänge -->
 
-    <owl:Class rdf:about="http://www.oneo.net/Wandbehänge">
-        <rdfs:subClassOf rdf:resource="http://www.oneo.net/Textilen"/>
+    <owl:Class rdf:about="&toporaz;Wandbehänge">
+        <rdfs:subClassOf rdf:resource="&toporaz;Textilen"/>
     </owl:Class>
     
 
 
     <!-- http://www.oneo.net/Wandmalereien -->
 
-    <owl:Class rdf:about="http://www.oneo.net/Wandmalereien">
-        <rdfs:subClassOf rdf:resource="http://www.oneo.net/Kuenstlicher_Medium"/>
-        <rdfs:subClassOf rdf:resource="http://www.oneo.net/OutsideFurnishingType"/>
+    <owl:Class rdf:about="&toporaz;Wandmalereien">
+        <rdfs:subClassOf rdf:resource="&toporaz;Kuenstlicher_Medium"/>
+        <rdfs:subClassOf rdf:resource="&toporaz;OutsideFurnishingType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.oneo.net/toporaz/AssociationActivity -->
+
+    <owl:Class rdf:about="&toporaz;toporaz/AssociationActivity">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/prov#Activity"/>
+        <rdfs:comment xml:lang="en">Association activity relates an agent (eg Person) to another Agent</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.oneo.net/toporaz/Facade -->
+
+    <owl:Class rdf:about="&toporaz;toporaz/Facade">
+        <rdfs:label xml:lang="de">Fassade</rdfs:label>
+        <rdfs:label xml:lang="en">Facade</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/prov#Entity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.oneo.net/toporaz/Field -->
+
+    <owl:Class rdf:about="&toporaz;toporaz/Field">
+        <rdfs:label xml:lang="de">Flur</rdfs:label>
+        <rdfs:label xml:lang="en">Field</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&toporaz;Site"/>
+        <rdfs:comment xml:lang="en">Field, usually a number in registrations</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.oneo.net/toporaz/Level -->
+
+    <owl:Class rdf:about="&toporaz;toporaz/Level">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/prov#Entity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.oneo.net/toporaz/Parcel -->
+
+    <owl:Class rdf:about="&toporaz;toporaz/Parcel">
+        <rdfs:label xml:lang="de">Flürstuck</rdfs:label>
+        <rdfs:label xml:lang="en">Parcel</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&toporaz;Site"/>
+        <rdfs:comment xml:lang="en">Field and parcel are an organizational division only used in Germany to reference a certain piece of physical land to a unique code for purposes of urban planning and taxation</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.oneo.net/toporaz/Parish -->
+
+    <owl:Class rdf:about="&toporaz;toporaz/Parish">
+        <rdfs:label xml:lang="de">Gemarkung</rdfs:label>
+        <rdfs:label xml:lang="en">Parish</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&toporaz;Site"/>
+        <rdfs:comment xml:lang="en">The hierarchy of this Division is usually Gemarkung (engl. parish) – usually the name of a community</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.oneo.net/toporaz/RelationBuildingAgent -->
+
+    <owl:Class rdf:about="&toporaz;toporaz/RelationBuildingAgent">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/prov#Activity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.oneo.net/toporaz/Roof -->
+
+    <owl:Class rdf:about="&toporaz;toporaz/Roof">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/prov#Entity"/>
     </owl:Class>
     
 
@@ -876,262 +1216,262 @@ In case of a modern building, this may be the actual name of the building, altho
 
     <!-- http://www.oneo.net/Basilika -->
 
-    <owl:NamedIndividual rdf:about="http://www.oneo.net/Basilika">
-        <rdf:type rdf:resource="http://www.oneo.net/SacralArchitecture"/>
+    <owl:NamedIndividual rdf:about="&toporaz;Basilika">
+        <rdf:type rdf:resource="&toporaz;SacralArchitecture"/>
     </owl:NamedIndividual>
     
 
 
     <!-- http://www.oneo.net/Brunnen -->
 
-    <owl:NamedIndividual rdf:about="http://www.oneo.net/Brunnen">
-        <rdf:type rdf:resource="http://www.oneo.net/OutsideFurnishingType"/>
+    <owl:NamedIndividual rdf:about="&toporaz;Brunnen">
+        <rdf:type rdf:resource="&toporaz;OutsideFurnishingType"/>
     </owl:NamedIndividual>
     
 
 
     <!-- http://www.oneo.net/Chor -->
 
-    <owl:NamedIndividual rdf:about="http://www.oneo.net/Chor">
-        <rdf:type rdf:resource="http://www.oneo.net/SacralRoomFunction"/>
+    <owl:NamedIndividual rdf:about="&toporaz;Chor">
+        <rdf:type rdf:resource="&toporaz;SacralRoomFunction"/>
     </owl:NamedIndividual>
     
 
 
     <!-- http://www.oneo.net/Haken_und_so_Zeugs -->
 
-    <owl:NamedIndividual rdf:about="http://www.oneo.net/Haken_und_so_Zeugs">
-        <rdf:type rdf:resource="http://www.oneo.net/OutsideFurnishingType"/>
+    <owl:NamedIndividual rdf:about="&toporaz;Haken_und_so_Zeugs">
+        <rdf:type rdf:resource="&toporaz;OutsideFurnishingType"/>
     </owl:NamedIndividual>
     
 
 
     <!-- http://www.oneo.net/Hallenkirche -->
 
-    <owl:NamedIndividual rdf:about="http://www.oneo.net/Hallenkirche">
-        <rdf:type rdf:resource="http://www.oneo.net/SacralArchitecture"/>
+    <owl:NamedIndividual rdf:about="&toporaz;Hallenkirche">
+        <rdf:type rdf:resource="&toporaz;SacralArchitecture"/>
     </owl:NamedIndividual>
     
 
 
     <!-- http://www.oneo.net/Kapelle -->
 
-    <owl:NamedIndividual rdf:about="http://www.oneo.net/Kapelle">
-        <rdf:type rdf:resource="http://www.oneo.net/SacralFunction"/>
+    <owl:NamedIndividual rdf:about="&toporaz;Kapelle">
+        <rdf:type rdf:resource="&toporaz;SacralFunction"/>
     </owl:NamedIndividual>
     
 
 
     <!-- http://www.oneo.net/Keller -->
 
-    <owl:NamedIndividual rdf:about="http://www.oneo.net/Keller">
-        <rdf:type rdf:resource="http://www.oneo.net/RoomFunction"/>
+    <owl:NamedIndividual rdf:about="&toporaz;Keller">
+        <rdf:type rdf:resource="&toporaz;RoomFunction"/>
     </owl:NamedIndividual>
     
 
 
     <!-- http://www.oneo.net/Klosterkirche -->
 
-    <owl:NamedIndividual rdf:about="http://www.oneo.net/Klosterkirche">
-        <rdf:type rdf:resource="http://www.oneo.net/SacralFunction"/>
+    <owl:NamedIndividual rdf:about="&toporaz;Klosterkirche">
+        <rdf:type rdf:resource="&toporaz;SacralFunction"/>
     </owl:NamedIndividual>
     
 
 
     <!-- http://www.oneo.net/Küche -->
 
-    <owl:NamedIndividual rdf:about="http://www.oneo.net/Küche">
-        <rdf:type rdf:resource="http://www.oneo.net/RoomFunction"/>
+    <owl:NamedIndividual rdf:about="&toporaz;Küche">
+        <rdf:type rdf:resource="&toporaz;RoomFunction"/>
     </owl:NamedIndividual>
     
 
 
     <!-- http://www.oneo.net/Mittelschiff -->
 
-    <owl:NamedIndividual rdf:about="http://www.oneo.net/Mittelschiff">
-        <rdf:type rdf:resource="http://www.oneo.net/SacralRoomFunction"/>
+    <owl:NamedIndividual rdf:about="&toporaz;Mittelschiff">
+        <rdf:type rdf:resource="&toporaz;SacralRoomFunction"/>
     </owl:NamedIndividual>
     
 
 
     <!-- http://www.oneo.net/Pfarrkirche -->
 
-    <owl:NamedIndividual rdf:about="http://www.oneo.net/Pfarrkirche">
-        <rdf:type rdf:resource="http://www.oneo.net/SacralFunction"/>
+    <owl:NamedIndividual rdf:about="&toporaz;Pfarrkirche">
+        <rdf:type rdf:resource="&toporaz;SacralFunction"/>
     </owl:NamedIndividual>
     
 
 
     <!-- http://www.oneo.net/Plasterung -->
 
-    <owl:NamedIndividual rdf:about="http://www.oneo.net/Plasterung">
-        <rdf:type rdf:resource="http://www.oneo.net/OutsideFurnishingType"/>
+    <owl:NamedIndividual rdf:about="&toporaz;Plasterung">
+        <rdf:type rdf:resource="&toporaz;OutsideFurnishingType"/>
     </owl:NamedIndividual>
     
 
 
     <!-- http://www.oneo.net/Platz -->
 
-    <owl:NamedIndividual rdf:about="http://www.oneo.net/Platz">
-        <rdf:type rdf:resource="http://www.oneo.net/PublicSiteFunction"/>
+    <owl:NamedIndividual rdf:about="&toporaz;Platz">
+        <rdf:type rdf:resource="&toporaz;PublicSiteFunction"/>
     </owl:NamedIndividual>
     
 
 
     <!-- http://www.oneo.net/RoomKapelle -->
 
-    <owl:NamedIndividual rdf:about="http://www.oneo.net/RoomKapelle">
-        <rdf:type rdf:resource="http://www.oneo.net/SacralRoomFunction"/>
+    <owl:NamedIndividual rdf:about="&toporaz;RoomKapelle">
+        <rdf:type rdf:resource="&toporaz;SacralRoomFunction"/>
     </owl:NamedIndividual>
     
 
 
     <!-- http://www.oneo.net/Saalkirche -->
 
-    <owl:NamedIndividual rdf:about="http://www.oneo.net/Saalkirche">
-        <rdf:type rdf:resource="http://www.oneo.net/SacralArchitecture"/>
+    <owl:NamedIndividual rdf:about="&toporaz;Saalkirche">
+        <rdf:type rdf:resource="&toporaz;SacralArchitecture"/>
     </owl:NamedIndividual>
     
 
 
     <!-- http://www.oneo.net/Sakristei -->
 
-    <owl:NamedIndividual rdf:about="http://www.oneo.net/Sakristei">
-        <rdf:type rdf:resource="http://www.oneo.net/SacralRoomFunction"/>
+    <owl:NamedIndividual rdf:about="&toporaz;Sakristei">
+        <rdf:type rdf:resource="&toporaz;SacralRoomFunction"/>
     </owl:NamedIndividual>
     
 
 
     <!-- http://www.oneo.net/Sanktuarium -->
 
-    <owl:NamedIndividual rdf:about="http://www.oneo.net/Sanktuarium">
-        <rdf:type rdf:resource="http://www.oneo.net/SacralRoomFunction"/>
+    <owl:NamedIndividual rdf:about="&toporaz;Sanktuarium">
+        <rdf:type rdf:resource="&toporaz;SacralRoomFunction"/>
     </owl:NamedIndividual>
     
 
 
     <!-- http://www.oneo.net/Seitenschiff -->
 
-    <owl:NamedIndividual rdf:about="http://www.oneo.net/Seitenschiff">
-        <rdf:type rdf:resource="http://www.oneo.net/SacralRoomFunction"/>
+    <owl:NamedIndividual rdf:about="&toporaz;Seitenschiff">
+        <rdf:type rdf:resource="&toporaz;SacralRoomFunction"/>
     </owl:NamedIndividual>
     
 
 
     <!-- http://www.oneo.net/Spitalkirche -->
 
-    <owl:NamedIndividual rdf:about="http://www.oneo.net/Spitalkirche">
-        <rdf:type rdf:resource="http://www.oneo.net/SacralFunction"/>
+    <owl:NamedIndividual rdf:about="&toporaz;Spitalkirche">
+        <rdf:type rdf:resource="&toporaz;SacralFunction"/>
     </owl:NamedIndividual>
     
 
 
     <!-- http://www.oneo.net/StoneHouse -->
 
-    <owl:NamedIndividual rdf:about="http://www.oneo.net/StoneHouse">
-        <rdf:type rdf:resource="http://www.oneo.net/ArchitectureType"/>
+    <owl:NamedIndividual rdf:about="&toporaz;StoneHouse">
+        <rdf:type rdf:resource="&toporaz;ArchitectureType"/>
     </owl:NamedIndividual>
     
 
 
     <!-- http://www.oneo.net/Straße -->
 
-    <owl:NamedIndividual rdf:about="http://www.oneo.net/Straße">
-        <rdf:type rdf:resource="http://www.oneo.net/PublicSiteFunction"/>
+    <owl:NamedIndividual rdf:about="&toporaz;Straße">
+        <rdf:type rdf:resource="&toporaz;PublicSiteFunction"/>
     </owl:NamedIndividual>
     
 
 
     <!-- http://www.oneo.net/Synagoge -->
 
-    <owl:NamedIndividual rdf:about="http://www.oneo.net/Synagoge">
-        <rdf:type rdf:resource="http://www.oneo.net/SacralFunction"/>
+    <owl:NamedIndividual rdf:about="&toporaz;Synagoge">
+        <rdf:type rdf:resource="&toporaz;SacralFunction"/>
     </owl:NamedIndividual>
     
 
 
     <!-- http://www.oneo.net/Textilien -->
 
-    <owl:NamedIndividual rdf:about="http://www.oneo.net/Textilien"/>
+    <owl:NamedIndividual rdf:about="&toporaz;Textilien"/>
     
 
 
     <!-- http://www.oneo.net/TimberedHouse -->
 
-    <owl:NamedIndividual rdf:about="http://www.oneo.net/TimberedHouse">
-        <rdf:type rdf:resource="http://www.oneo.net/ArchitectureType"/>
+    <owl:NamedIndividual rdf:about="&toporaz;TimberedHouse">
+        <rdf:type rdf:resource="&toporaz;ArchitectureType"/>
     </owl:NamedIndividual>
     
 
 
     <!-- http://www.oneo.net/Treppe -->
 
-    <owl:NamedIndividual rdf:about="http://www.oneo.net/Treppe">
-        <rdf:type rdf:resource="http://www.oneo.net/RoomFunction"/>
+    <owl:NamedIndividual rdf:about="&toporaz;Treppe">
+        <rdf:type rdf:resource="&toporaz;RoomFunction"/>
     </owl:NamedIndividual>
     
 
 
     <!-- http://www.oneo.net/Wirtenschaftsgebäude -->
 
-    <owl:NamedIndividual rdf:about="http://www.oneo.net/Wirtenschaftsgebäude">
-        <rdf:type rdf:resource="http://www.oneo.net/BuildingFunction"/>
+    <owl:NamedIndividual rdf:about="&toporaz;Wirtenschaftsgebäude">
+        <rdf:type rdf:resource="&toporaz;BuildingFunction"/>
     </owl:NamedIndividual>
     
 
 
     <!-- http://www.oneo.net/Wirtschaftsgebäude -->
 
-    <owl:NamedIndividual rdf:about="http://www.oneo.net/Wirtschaftsgebäude">
-        <rdf:type rdf:resource="http://www.oneo.net/ArchitectureType"/>
+    <owl:NamedIndividual rdf:about="&toporaz;Wirtschaftsgebäude">
+        <rdf:type rdf:resource="&toporaz;ArchitectureType"/>
     </owl:NamedIndividual>
     
 
 
     <!-- http://www.oneo.net/Wohn_und_Geschäftshaus -->
 
-    <owl:NamedIndividual rdf:about="http://www.oneo.net/Wohn_und_Geschäftshaus">
-        <rdf:type rdf:resource="http://www.oneo.net/BuildingFunction"/>
+    <owl:NamedIndividual rdf:about="&toporaz;Wohn_und_Geschäftshaus">
+        <rdf:type rdf:resource="&toporaz;BuildingFunction"/>
     </owl:NamedIndividual>
     
 
 
     <!-- http://www.oneo.net/Wohnraum -->
 
-    <owl:NamedIndividual rdf:about="http://www.oneo.net/Wohnraum">
-        <rdf:type rdf:resource="http://www.oneo.net/RoomFunction"/>
+    <owl:NamedIndividual rdf:about="&toporaz;Wohnraum">
+        <rdf:type rdf:resource="&toporaz;RoomFunction"/>
     </owl:NamedIndividual>
     
 
 
     <!-- http://www.oneo.net/Zentralbau -->
 
-    <owl:NamedIndividual rdf:about="http://www.oneo.net/Zentralbau">
-        <rdf:type rdf:resource="http://www.oneo.net/SacralArchitecture"/>
+    <owl:NamedIndividual rdf:about="&toporaz;Zentralbau">
+        <rdf:type rdf:resource="&toporaz;SacralArchitecture"/>
     </owl:NamedIndividual>
     
 
 
     <!-- http://www.oneo.net/ÖffentlichesGebäude -->
 
-    <owl:NamedIndividual rdf:about="http://www.oneo.net/ÖffentlichesGebäude">
-        <rdf:type rdf:resource="http://www.oneo.net/ArchitectureType"/>
+    <owl:NamedIndividual rdf:about="&toporaz;ÖffentlichesGebäude">
+        <rdf:type rdf:resource="&toporaz;ArchitectureType"/>
     </owl:NamedIndividual>
     
 
 
     <!-- http://www.oneo.net/Öffentliches_Gebäude -->
 
-    <owl:NamedIndividual rdf:about="http://www.oneo.net/Öffentliches_Gebäude">
-        <rdf:type rdf:resource="http://www.oneo.net/BuildingFunction"/>
+    <owl:NamedIndividual rdf:about="&toporaz;Öffentliches_Gebäude">
+        <rdf:type rdf:resource="&toporaz;BuildingFunction"/>
     </owl:NamedIndividual>
     
 
 
     <!-- http://www.oneo.net/Laterne/Beleuchtung -->
 
-    <owl:NamedIndividual rdf:about="http://www.oneo.net/Laterne/Beleuchtung">
-        <rdf:type rdf:resource="http://www.oneo.net/OutsideFurnishingType"/>
+    <owl:NamedIndividual rdf:about="&toporaz;Laterne/Beleuchtung">
+        <rdf:type rdf:resource="&toporaz;OutsideFurnishingType"/>
     </owl:NamedIndividual>
 </rdf:RDF>
 

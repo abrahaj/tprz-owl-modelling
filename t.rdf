@@ -15,6 +15,7 @@
     <!ENTITY xsp "http://www.owl-ontologies.com/2005/08/07/xsp.owl#" >
 ]>
 
+
 <rdf:RDF xmlns="http://www.oneo.net/t/"
      xml:base="http://www.oneo.net/t/"
      xmlns:xsp="http://www.owl-ontologies.com/2005/08/07/xsp.owl#"
@@ -4834,14 +4835,14 @@ Examples:
         <rdfs:subClassOf rdf:resource="&ecrm;E13_Attribute_Assignment"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&ecrm;P40_observed_dimension"/>
-                <owl:someValuesFrom rdf:resource="&ecrm;E54_Dimension"/>
+                <owl:onProperty rdf:resource="&ecrm;P39_measured"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&ecrm;P39_measured"/>
-                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+                <owl:onProperty rdf:resource="&ecrm;P40_observed_dimension"/>
+                <owl:someValuesFrom rdf:resource="&ecrm;E54_Dimension"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <skos:notation rdf:datatype="&xsd;string">E16</skos:notation>
@@ -4866,14 +4867,14 @@ Examples:
         <rdfs:subClassOf rdf:resource="&ecrm;E13_Attribute_Assignment"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&ecrm;P42_assigned"/>
-                <owl:someValuesFrom rdf:resource="&ecrm;E55_Type"/>
+                <owl:onProperty rdf:resource="&ecrm;P41_classified"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&ecrm;P41_classified"/>
-                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+                <owl:onProperty rdf:resource="&ecrm;P42_assigned"/>
+                <owl:someValuesFrom rdf:resource="&ecrm;E55_Type"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <skos:notation rdf:datatype="&xsd;string">E17</skos:notation>
@@ -4896,6 +4897,12 @@ Examples:
         <rdfs:subClassOf rdf:resource="&ecrm;E72_Legal_Object"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="&ecrm;P45_consists_of"/>
+                <owl:someValuesFrom rdf:resource="&ecrm;E57_Material"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="&ecrm;P13i_was_destroyed_by"/>
                 <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
             </owl:Restriction>
@@ -4904,12 +4911,6 @@ Examples:
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&ecrm;P53_has_former_or_current_location"/>
                 <owl:someValuesFrom rdf:resource="&ecrm;E53_Place"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&ecrm;P45_consists_of"/>
-                <owl:someValuesFrom rdf:resource="&ecrm;E57_Material"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <owl:disjointWith rdf:resource="&ecrm;E28_Conceptual_Object"/>
@@ -4936,13 +4937,13 @@ Examples:
         <rdfs:subClassOf rdf:resource="&ecrm;E18_Physical_Thing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&ecrm;P54_has_current_permanent_location"/>
+                <owl:onProperty rdf:resource="&ecrm;P55_has_current_location"/>
                 <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&ecrm;P55_has_current_location"/>
+                <owl:onProperty rdf:resource="&ecrm;P54_has_current_permanent_location"/>
                 <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -5022,14 +5023,14 @@ Examples:
         <rdfs:subClassOf rdf:resource="&ecrm;E39_Actor"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&ecrm;P98i_was_born"/>
-                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+                <owl:onProperty rdf:resource="&ecrm;P152_has_parent"/>
+                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">2</owl:minCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&ecrm;P152_has_parent"/>
-                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">2</owl:minCardinality>
+                <owl:onProperty rdf:resource="&ecrm;P98i_was_born"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <skos:notation rdf:datatype="&xsd;string">E21</skos:notation>
@@ -5799,14 +5800,14 @@ Examples:
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&ecrm;P84_had_at_most_duration"/>
-                <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
+                <owl:onProperty rdf:resource="&ecrm;P4i_is_time-span_of"/>
+                <owl:someValuesFrom rdf:resource="&ecrm;E2_Temporal_Entity"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&ecrm;P4i_is_time-span_of"/>
-                <owl:someValuesFrom rdf:resource="&ecrm;E2_Temporal_Entity"/>
+                <owl:onProperty rdf:resource="&ecrm;P84_had_at_most_duration"/>
+                <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <skos:notation rdf:datatype="&xsd;string">E52</skos:notation>
@@ -6283,14 +6284,14 @@ Examples:
         <rdfs:subClassOf rdf:resource="&ecrm;E70_Thing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&ecrm;P104_is_subject_to"/>
-                <owl:someValuesFrom rdf:resource="&ecrm;E30_Right"/>
+                <owl:onProperty rdf:resource="&ecrm;P105_right_held_by"/>
+                <owl:someValuesFrom rdf:resource="&ecrm;E39_Actor"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&ecrm;P105_right_held_by"/>
-                <owl:someValuesFrom rdf:resource="&ecrm;E39_Actor"/>
+                <owl:onProperty rdf:resource="&ecrm;P104_is_subject_to"/>
+                <owl:someValuesFrom rdf:resource="&ecrm;E30_Right"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <skos:notation rdf:datatype="&xsd;string">E72</skos:notation>
@@ -6348,14 +6349,14 @@ Examples:
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&ecrm;P144i_gained_member_by"/>
-                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">2</owl:minCardinality>
+                <owl:onProperty rdf:resource="&ecrm;P95i_was_formed_by"/>
+                <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&ecrm;P95i_was_formed_by"/>
-                <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
+                <owl:onProperty rdf:resource="&ecrm;P144i_gained_member_by"/>
+                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">2</owl:minCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <skos:notation rdf:datatype="&xsd;string">E74</skos:notation>
@@ -6457,14 +6458,14 @@ Examples:
         <rdfs:subClassOf rdf:resource="&ecrm;E11_Modification"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&ecrm;P111_added"/>
-                <owl:someValuesFrom rdf:resource="&ecrm;E18_Physical_Thing"/>
+                <owl:onProperty rdf:resource="&ecrm;P110_augmented"/>
+                <owl:someValuesFrom rdf:resource="&ecrm;E24_Physical_Man-Made_Thing"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&ecrm;P110_augmented"/>
-                <owl:someValuesFrom rdf:resource="&ecrm;E24_Physical_Man-Made_Thing"/>
+                <owl:onProperty rdf:resource="&ecrm;P111_added"/>
+                <owl:someValuesFrom rdf:resource="&ecrm;E18_Physical_Thing"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <skos:notation rdf:datatype="&xsd;string">E79</skos:notation>
@@ -6548,13 +6549,13 @@ Examples:
         <rdfs:subClassOf rdf:resource="&ecrm;E64_End_of_Existence"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&ecrm;P124_transformed"/>
+                <owl:onProperty rdf:resource="&ecrm;P123_resulted_in"/>
                 <owl:someValuesFrom rdf:resource="&ecrm;E77_Persistent_Item"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&ecrm;P123_resulted_in"/>
+                <owl:onProperty rdf:resource="&ecrm;P124_transformed"/>
                 <owl:someValuesFrom rdf:resource="&ecrm;E77_Persistent_Item"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -6897,8 +6898,8 @@ Examples:</rdfs:comment>
         <rdfs:subClassOf rdf:resource="&ecrm;E7_Activity"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&ecrm;P25_moved"/>
-                <owl:someValuesFrom rdf:resource="&ecrm;E19_Physical_Object"/>
+                <owl:onProperty rdf:resource="&ecrm;P26_moved_to"/>
+                <owl:someValuesFrom rdf:resource="&ecrm;E53_Place"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -6909,8 +6910,8 @@ Examples:</rdfs:comment>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&ecrm;P26_moved_to"/>
-                <owl:someValuesFrom rdf:resource="&ecrm;E53_Place"/>
+                <owl:onProperty rdf:resource="&ecrm;P25_moved"/>
+                <owl:someValuesFrom rdf:resource="&ecrm;E19_Physical_Object"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <skos:notation rdf:datatype="&xsd;string">E9</skos:notation>

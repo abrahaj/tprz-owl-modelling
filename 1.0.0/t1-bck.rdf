@@ -1,0 +1,201 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY ecrm "http://erlangen-crm.org/150218/" >
+    <!ENTITY swrl "http://www.w3.org/2003/11/swrl#" >
+    <!ENTITY swrlb "http://www.w3.org/2003/11/swrlb#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY skos "http://www.w3.org/2004/02/skos/core#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY protege "http://protege.stanford.edu/plugins/owl/protege#" >
+    <!ENTITY xsp "http://www.owl-ontologies.com/2005/08/07/xsp.owl#" >
+]>
+
+
+<rdf:RDF xmlns="http://www.oneo.net/t/"
+     xml:base="http://www.oneo.net/t/"
+     xmlns:xsp="http://www.owl-ontologies.com/2005/08/07/xsp.owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:ecrm="http://erlangen-crm.org/150218/"
+     xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+     xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
+     xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://www.oneo.net/t/">
+        <owl:imports rdf:resource="http://erlangen-crm.org/150218/"/>
+        <owl:versionIRI rdf:resource="http://www.oneo.net/t/1.0.0"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.oneo.net/t/E410T_Geographic_Cardinal_Direction -->
+
+    <owl:Class rdf:about="http://www.oneo.net/t/E410T_Geographic_Cardinal_Direction">
+        <rdfs:subClassOf rdf:resource="&ecrm;E41_Appellation"/>
+        <rdfs:comment>Orientation of Elements (building elements) in Geographical Cardinal Coordinates. Eg: 180 / 180 &amp; 345</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.oneo.net/t/E550T_Building_Function -->
+
+    <owl:Class rdf:about="http://www.oneo.net/t/E550T_Building_Function">
+        <rdfs:subClassOf rdf:resource="&ecrm;E55_Type"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.oneo.net/t/E551T_Specific_Building_Function -->
+
+    <owl:Class rdf:about="http://www.oneo.net/t/E551T_Specific_Building_Function">
+        <rdfs:subClassOf rdf:resource="http://www.oneo.net/t/E550T_Building_Function"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.oneo.net/t/E552T_Building_Typology -->
+
+    <owl:Class rdf:about="http://www.oneo.net/t/E552T_Building_Typology">
+        <rdfs:subClassOf rdf:resource="&ecrm;E55_Type"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.oneo.net/t/ET1000_Construction -->
+
+    <owl:Class rdf:about="http://www.oneo.net/t/ET1000_Construction">
+        <rdfs:label xml:lang="en">ET1000 Construction</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ecrm;E22_Man-Made_Object"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.oneo.net/t/ET1001_Axis -->
+
+    <owl:Class rdf:about="http://www.oneo.net/t/ET1001_Axis">
+        <rdfs:label xml:lang="en">ET1001 Axis</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ecrm;E73_Information_Object"/>
+        <rdfs:comment xml:lang="en">An imaginary line around which an object spins (an axis of rotation) or is symmetrically arranged (an axis of symmetry).
+Used to represent directions in a construction element</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.oneo.net/t/ET1002_Construction_Element -->
+
+    <owl:Class rdf:about="http://www.oneo.net/t/ET1002_Construction_Element">
+        <rdfs:label xml:lang="en">ET1002 Construction Element</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ecrm;E55_Type"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.oneo.net/t/ET1003_Facade_Element -->
+
+    <owl:Class rdf:about="http://www.oneo.net/t/ET1003_Facade_Element">
+        <rdfs:label xml:lang="en">ET1003 Facade Element</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.oneo.net/t/ET1002_Construction_Element"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.oneo.net/t/ET1004_Roof_Element -->
+
+    <owl:Class rdf:about="http://www.oneo.net/t/ET1004_Roof_Element">
+        <rdfs:label xml:lang="en">ET1004 Roof Element</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.oneo.net/t/ET1002_Construction_Element"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.oneo.net/t/ET1005_Roof_Shape -->
+
+    <owl:Class rdf:about="http://www.oneo.net/t/ET1005_Roof_Shape">
+        <rdfs:label xml:lang="en">ET1005 Roof Shape</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ecrm;E36_Visual_Item"/>
+        <rdfs:subClassOf rdf:resource="http://www.oneo.net/t/ET1000_Construction"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.oneo.net/t/ET1007_Color -->
+
+    <owl:Class rdf:about="http://www.oneo.net/t/ET1007_Color">
+        <rdfs:label xml:lang="en">ET1007 Color</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ecrm;E55_Type"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.oneo.net/t/ET1007_Level_Location -->
+
+    <owl:Class rdf:about="http://www.oneo.net/t/ET1007_Level_Location">
+        <rdfs:label xml:lang="en">ET1007 Level Location</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ecrm;E44_Place_Appellation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.oneo.net/t/T10_Building_Section -->
+
+    <owl:Class rdf:about="http://www.oneo.net/t/T10_Building_Section">
+        <rdfs:subClassOf rdf:resource="&ecrm;E46_Section_Definition"/>
+        <rdfs:subClassOf rdf:resource="http://www.oneo.net/t/ET1000_Construction"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.oneo.net/t/T11_Facade -->
+
+    <owl:Class rdf:about="http://www.oneo.net/t/T11_Facade">
+        <rdfs:subClassOf rdf:resource="http://www.oneo.net/t/T10_Building_Section"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.oneo.net/t/T12_Roof -->
+
+    <owl:Class rdf:about="http://www.oneo.net/t/T12_Roof">
+        <rdfs:subClassOf rdf:resource="http://www.oneo.net/t/T10_Building_Section"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.oneo.net/t/T13_Level -->
+
+    <owl:Class rdf:about="http://www.oneo.net/t/T13_Level">
+        <rdfs:subClassOf rdf:resource="http://www.oneo.net/t/T10_Building_Section"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.oneo.net/t/T1_Building -->
+
+    <owl:Class rdf:about="http://www.oneo.net/t/T1_Building">
+        <rdfs:label xml:lang="en">T1 Building</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.oneo.net/t/ET1000_Construction"/>
+        <rdfs:comment xml:lang="en">This entity points to a man made construction, used for crucial activities</rdfs:comment>
+    </owl:Class>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.5.0) http://owlapi.sourceforge.net -->
+

@@ -2,16 +2,16 @@
 <catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
     <uri id="Imports Wizard Entry" name="http://erlangen-crm.org/150218/" uri="erlangen-crm.rdf"/>
     <group id="Folder Repository, directory=, recursive=true, Auto-Update=true, version=2" prefer="public" xml:base="">
-        <uri id="Automatically generated entry, Timestamp=1450780546618" name="duplicate:http://erlangen-crm.org/150218/" uri="toporaz-erlang.rdf"/>
-        <uri id="Automatically generated entry, Timestamp=1450780546618" name="duplicate:http://erlangen-crm.org/150218/" uri="erlangen-crm.rdf"/>
-        <uri id="Automatically generated entry, Timestamp=1450780546618" name="duplicate:http://www.oneo.net/ns/toporaz-wisski" uri="%22toporaz-wisski.owl%22.owl"/>
-        <uri id="Automatically generated entry, Timestamp=1450780546618" name="duplicate:http://www.oneo.net/ns/toporaz-wisski" uri="toporaz-wisski.rdf"/>
-        <uri id="Automatically generated entry, Timestamp=1450780546618" name="duplicate:http://www.oneo.net/ns/toporaz-wisski" uri="toporaz-wisski.owl"/>
-        <uri id="Automatically generated entry, Timestamp=1450780546618" name="duplicate:http://www.oneo.net/t/" uri="t.owl"/>
-        <uri id="Automatically generated entry, Timestamp=1450780546618" name="duplicate:http://www.oneo.net/t/" uri="t.rdf"/>
-        <uri id="Automatically generated entry, Timestamp=1450780546618" name="http://www.oneo.net/toporaz" uri="toporaz-erlang-prov.owl"/>
-        <uri id="Automatically generated entry, Timestamp=1450780546618" name="http://www.oneo.net/toporaz/" uri="toporaz.rdf"/>
-        <uri id="Automatically generated entry, Timestamp=1450780546618" name="http://www.w3.org/2002/07/owl" uri="toporaz-erlang-prov.rdf"/>
-        <uri id="Automatically generated entry, Timestamp=1450780546618" name="http://wwwdh.cs.fau.de/ontologies/herder-test/" uri="chml-3d.rdf"/>
+        <uri id="Automatically generated entry, Timestamp=1452774462590" name="http://erlangen-crm.org/150218/" uri="erlangen-crm.rdf"/>
+        <uri id="Automatically generated entry, Timestamp=1452774462590" name="duplicate:http://www.oneo.net/ns/toporaz-wisski" uri="toporaz-wisski.rdf"/>
+        <uri id="Automatically generated entry, Timestamp=1452774462590" name="duplicate:http://www.oneo.net/ns/toporaz-wisski" uri="toporaz-wisski.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1452774462590" name="duplicate:http://www.oneo.net/t/" uri="t.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1452774462590" name="duplicate:http://www.oneo.net/t/" uri="t.rdf"/>
+        <uri id="Automatically generated entry, Timestamp=1452774462590" name="duplicate:http://www.oneo.net/t/" uri="t1-old.rdf"/>
+        <uri id="Automatically generated entry, Timestamp=1452774462590" name="http://www.oneo.net/toporaz/" uri="toporaz.rdf"/>
+        <uri id="Automatically generated entry, Timestamp=1452774462590" name="http://wwwdh.cs.fau.de/ontologies/herder-test/" uri="chml-3d.rdf"/>
+        <uri id="Automatically generated entry, Timestamp=1452774462590" name="shadowed:http://www.oneo.net/t/" uri="1.0.0/t.rdf"/>
+        <uri id="Automatically generated entry, Timestamp=1452774462590" name="shadowed:http://www.oneo.net/t/" uri="1.0.0/t-bck.rdf"/>
+        <uri id="Automatically generated entry, Timestamp=1452774462590" name="shadowed:http://www.oneo.net/t/" uri="1.0.0/t1-bck.rdf"/>
     </group>
 </catalog>

@@ -7,7 +7,7 @@
     xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
     xmlns:swrl="http://www.w3.org/2003/11/swrl#"
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-    xmlns="http://www.oneo.net/t/"
+    xmlns:toporaz="http://www.oneo.net/t/"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
   xml:base="http://www.oneo.net/t/">
   <owl:Ontology rdf:about="">
